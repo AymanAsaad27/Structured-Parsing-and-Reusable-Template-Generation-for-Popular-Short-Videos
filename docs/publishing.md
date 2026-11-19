@@ -1,6 +1,8 @@
 # Publish to GitHub
 
-This is a local repository. No online repository, remote, or initial commit has been created automatically.
+The project is published at https://github.com/AymanAsaad27/Structured-Parsing-and-Reusable-Template-Generation-for-Popular-Short-Videos on branch `main`. The local `origin` points to that repository.
+
+The instructions below are for publishing a separate copy; do not repeat remote setup in the already-connected checkout.
 
 1. Review the scaffold, select a license and configure your own Git author identity.
 2. On GitHub create an empty repository named beauty-video-templates; choose visibility appropriate to the project and do not initialize a README.

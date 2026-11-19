@@ -10,6 +10,9 @@ readme = "README.md"
 requires-python = ">=3.11"
 dependencies = ["jsonschema>=4.23,<5"]
 
+[project.urls]
+Repository = "https://github.com/AymanAsaad27/Structured-Parsing-and-Reusable-Template-Generation-for-Popular-Short-Videos"
+
 [project.optional-dependencies]
 dev = ["pytest>=8,<10", "ruff>=0.9,<1", "build>=1,<2"]
 shots = ["scenedetect[opencv]>=0.6,<0.7"]
