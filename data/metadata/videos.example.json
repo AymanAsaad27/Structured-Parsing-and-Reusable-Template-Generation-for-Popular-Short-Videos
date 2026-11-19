@@ -1,0 +1,10 @@
+{
+  "synthetic_example": true,
+  "videos": [
+    {
+      "video_id": "example-001",
+      "source_url": null,
+      "permission_status": "not_collected"
+    }
+  ]
+}

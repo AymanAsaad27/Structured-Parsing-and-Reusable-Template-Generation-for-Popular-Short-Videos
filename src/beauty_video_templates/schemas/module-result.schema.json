@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Parsing module result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "module",
+    "backend",
+    "video",
+    "parameters",
+    "items"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "module": {
+      "enum": [
+        "shots",
+        "beats",
+        "ocr",
+        "asr",
+        "transitions",
+        "shot_size"
+      ]
+    },
+    "backend": {
+      "type": "string",
+      "minLength": 1
+    },
+    "parameters": {
+      "type": "object"
+    },
+    "video": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "duration_seconds"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "duration_seconds": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      }
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "start": {
+            "type": "number",
+            "minimum": 0
+          },
+          "end": {
+            "type": "number",
+            "minimum": 0
+          },
+          "time": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "oneOf": [
+          {
+            "required": [
+              "start",
+              "end"
+            ],
+            "not": {
+              "required": [
+                "time"
+              ]
+            }
+          },
+          {
+            "required": [
+              "time"
+            ],
+            "not": {
+              "anyOf": [
+                {
+                  "required": [
+                    "start"
+                  ]
+                },
+                {
+                  "required": [
+                    "end"
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  }
+}

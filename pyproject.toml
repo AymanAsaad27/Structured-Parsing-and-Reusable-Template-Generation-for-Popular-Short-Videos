@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "beauty-video-templates"
+version = "0.1.0"
+description = "Structured parsing and reusable editing templates for beauty short videos"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = ["jsonschema>=4.23,<5"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10", "ruff>=0.9,<1", "build>=1,<2"]
+shots = ["scenedetect[opencv]>=0.6,<0.7"]
+beats = ["librosa>=0.10,<1", "soundfile>=0.12,<1"]
+asr = ["faster-whisper>=1,<2"]
+ocr = ["easyocr>=1.7,<2"]
+
+[project.scripts]
+bvt = "beauty_video_templates.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+beauty_video_templates = ["schemas/*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"

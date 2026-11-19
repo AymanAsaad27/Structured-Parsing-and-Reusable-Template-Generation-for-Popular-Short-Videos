@@ -1,0 +1,5 @@
+# Planned configuration; no inference runner consumes this yet.
+module = "shots"
+backend = "unimplemented"
+seed = 42
+output_root = "artifacts/phase2/shots"
