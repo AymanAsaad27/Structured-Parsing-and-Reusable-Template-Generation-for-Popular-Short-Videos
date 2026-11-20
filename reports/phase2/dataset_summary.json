@@ -1,0 +1,29 @@
+{
+  "mp4_files_including_copies": 280,
+  "unique_filename_ids": 200,
+  "annotation_rows": 3353,
+  "reference_csv_sha256": "4d4dbefb1134d94537b313678f524ff5a39802e3707fe43fcb40fb62d882bc3a",
+  "transition_labels": {
+    "开场直入": 200,
+    "硬切": 2680,
+    "叠化/渐变转场": 201,
+    "跳切/动作切": 266,
+    "闪黑/黑场转场": 6
+  },
+  "shot_size_labels": {
+    "近景": 400,
+    "极近景": 1807,
+    "局部特写": 590,
+    "全景": 47,
+    "产品/手部特写": 349,
+    "中景": 26,
+    "中景/产品展示": 93,
+    "中近景": 41
+  },
+  "repeated_id_groups": 55,
+  "byte_identical_groups": 55,
+  "additional_byte_identical_copies": 80,
+  "boundary_evaluation_videos": 30,
+  "boundary_evaluation_timebase": "source frame index, ±2 frames",
+  "reference_provenance": "provided annotations; independent/manual provenance unverified"
+}

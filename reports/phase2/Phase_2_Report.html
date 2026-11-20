@@ -1,0 +1,222 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Phase 2 report</title><style>body{font:16px/1.6 system-ui;max-width:1200px;margin:48px auto;padding:0 24px;color:#183044}h1,h2{color:#075c63}table{border-collapse:collapse;width:100%;font-size:13px;margin:20px 0}td,th{padding:9px;border:1px solid #cddce1;text-align:left}th{background:#e7f3f2}pre{background:#eef3f7;padding:20px;white-space:pre-wrap}</style><h1>Phase 2 · Single-modality parsing</h1>
+    <p>Local implementation and pilot evaluation. 200 unique filename IDs;
+    280 files including copies; 3353 supplied shot records.</p>
+    <h2>Measured comparisons</h2><table><tr><th>module</th><th>variant</th><th>sample_count</th><th>metric</th><th>value</th><th>precision</th><th>recall</th><th>status</th></tr><tr><td>shots</td><td>content</td><td>30</td><td>micro boundary F1</td><td>0.7790368271954675</td><td>0.9892086330935251</td><td>0.6425233644859814</td><td>measured supplied-reference agreement</td></tr><tr><td>shots</td><td>adaptive</td><td>30</td><td>micro boundary F1</td><td>0.8713910761154855</td><td>0.9940119760479041</td><td>0.7757009345794392</td><td>measured supplied-reference agreement</td></tr><tr><td>shots</td><td>content paired V002</td><td>1</td><td>boundary F1 on same comparison video</td><td>0</td><td>0.0</td><td>0.0</td><td>paired sample, not full-corpus TransNet benchmark</td></tr><tr><td>shots</td><td>adaptive paired V002</td><td>1</td><td>boundary F1 on same comparison video</td><td>0.5</td><td>1.0</td><td>0.3333333333333333</td><td>paired sample, not full-corpus TransNet benchmark</td></tr><tr><td>shots</td><td>content paired V005</td><td>1</td><td>boundary F1 on same comparison video</td><td>1.0</td><td>1.0</td><td>1.0</td><td>paired sample, not full-corpus TransNet benchmark</td></tr><tr><td>shots</td><td>adaptive paired V005</td><td>1</td><td>boundary F1 on same comparison video</td><td>1.0</td><td>1.0</td><td>1.0</td><td>paired sample, not full-corpus TransNet benchmark</td></tr><tr><td>shots</td><td>transnet paired V002</td><td>1</td><td>boundary F1 on same comparison video</td><td>0</td><td>0.0</td><td>0.0</td><td>paired sample, not full-corpus TransNet benchmark</td></tr><tr><td>shots</td><td>transnet paired V005</td><td>1</td><td>boundary F1 on same comparison video</td><td>1.0</td><td>1.0</td><td>1.0</td><td>paired sample, not full-corpus TransNet benchmark</td></tr><tr><td>transitions</td><td>transition_rules</td><td>41</td><td>video-disjoint pilot test accuracy</td><td>0.8048780487804879</td><td></td><td></td><td>21/3/6 video split; reference-conditioned; see confusion matrices</td></tr><tr><td>transitions</td><td>transition_majority_baseline</td><td>41</td><td>video-disjoint pilot test accuracy</td><td>0.9512195121951219</td><td></td><td></td><td>21/3/6 video split; reference-conditioned; see confusion matrices</td></tr><tr><td>transitions</td><td>transition_cnn</td><td>41</td><td>video-disjoint pilot test accuracy</td><td>0.9512195121951219</td><td></td><td></td><td>21/3/6 video split; reference-conditioned; see confusion matrices</td></tr><tr><td>shot_size</td><td>shot_size_linear_probe</td><td>23</td><td>video-disjoint pilot test accuracy</td><td>0.30434782608695654</td><td></td><td></td><td>21/3/6 video split; reference-conditioned; see confusion matrices</td></tr><tr><td>shot_size</td><td>shot_size_zero_shot_same_test</td><td>23</td><td>video-disjoint pilot test accuracy</td><td>0.2608695652173913</td><td></td><td></td><td>21/3/6 video split; reference-conditioned; see confusion matrices</td></tr><tr><td>shot_size</td><td>shot_size</td><td>26</td><td>midpoint-aligned accuracy</td><td>0.2692307692307692</td><td></td><td></td><td>conditional on detected intervals; ambiguous mixed label excluded</td></tr><tr><td>shot_size</td><td>shot_size_ensemble</td><td>26</td><td>midpoint-aligned accuracy</td><td>0.2692307692307692</td><td></td><td></td><td>conditional on detected intervals; ambiguous mixed label excluded</td></tr><tr><td>shot_size</td><td>shot_size_trained</td><td>1</td><td>midpoint-aligned accuracy</td><td>0.0</td><td></td><td></td><td>conditional on detected intervals; ambiguous mixed label excluded</td></tr><tr><td>transitions</td><td>rules</td><td>22</td><td>matched-candidate accuracy</td><td>1.0</td><td></td><td></td><td>conditional accuracy; unmatched/missed transitions excluded</td></tr><tr><td>beats</td><td>raw</td><td></td><td>accuracy metric</td><td>None</td><td></td><td></td><td>not measurable: no independent reference annotations found</td></tr><tr><td>beats</td><td>hpss</td><td></td><td>accuracy metric</td><td>None</td><td></td><td></td><td>not measurable: no independent reference annotations found</td></tr><tr><td>beats</td><td>Beat This! small0</td><td></td><td>accuracy metric</td><td>None</td><td></td><td></td><td>not measurable: no independent reference annotations found</td></tr><tr><td>ocr</td><td>sampled EasyOCR</td><td></td><td>accuracy metric</td><td>None</td><td></td><td></td><td>not measurable: no independent reference annotations found</td></tr><tr><td>asr</td><td>tiny beam1</td><td></td><td>accuracy metric</td><td>None</td><td></td><td></td><td>not measurable: no independent reference annotations found</td></tr><tr><td>asr</td><td>tiny beam5</td><td></td><td>accuracy metric</td><td>None</td><td></td><td></td><td>not measurable: no independent reference annotations found</td></tr></table>
+    <h2>Interpretation and protocol</h2>
+    <p>Shot detection: first 30 sorted video IDs, convenience sample. Compare content and adaptive PySceneDetect without tuning. One-to-one matching uses source frame indices with ±2-frame tolerance. Each video's final annotated frame was verified against its actual frame count. The supplied second timestamps are not reliable for every file: V003 ends at 28.867 seconds in the CSV but 46.867 seconds in the actual media, while its frame indices match. Therefore supplied seconds are not used as boundary ground truth. Output times use decoded presentation timestamps. Scores measure agreement with supplied annotations, whose provenance and inter-annotator reliability have not been independently verified.</p>
+    <p>Shot-size labels map to five classes. Mixed “medium/product display” labels are excluded. Reference size is selected by the source-frame midpoint of each detected interval; this is conditional, not end-to-end accuracy. Transition accuracy is conditional on detected boundaries matching a reference within ±2 source frames and is separate from missed-transition recall. Hard cuts and action/jump cuts map to hard_cut; dissolves and black transitions map to non_hard_cut.</p>
+    <h2>Failure analysis</h2>
+    <p>A late-frame sample in V003 originally failed under OpenCV millisecond seeking. The final sampler uses decoded presentation timestamps, and the affected visual outputs were regenerated. The separate annotation issue (incorrect CSV seconds despite matching source-frame indices) was resolved by frame-index evaluation and frame-indexed training samples, rather than stretching annotations to fit the video.</p>
+    <p>Observed in the supplied V001 contact sheet: exposure changes and nearly identical same-person jump cuts. These challenge pixel-difference detectors in different directions. The table below identifies actual low-agreement videos for review; disagreement does not by itself establish which annotation is correct.</p>
+    <table><tr><th>video_id</th><th>backend</th><th>precision</th><th>recall</th><th>f1</th><th>predicted</th><th>reference</th></tr><tr><td>V002</td><td>content</td><td>0.0</td><td>0.0</td><td>0</td><td>0</td><td>3</td></tr><tr><td>V006</td><td>content</td><td>0.0</td><td>0.0</td><td>0</td><td>0</td><td>4</td></tr><tr><td>V007</td><td>content</td><td>0.0</td><td>0.0</td><td>0</td><td>0</td><td>5</td></tr><tr><td>V007</td><td>adaptive</td><td>0.0</td><td>0.0</td><td>0</td><td>0</td><td>5</td></tr><tr><td>V002</td><td>transnet</td><td>0.0</td><td>0.0</td><td>0</td><td>0</td><td>3</td></tr><tr><td>V009</td><td>adaptive</td><td>0.3333333333333333</td><td>0.2</td><td>0.25</td><td>3</td><td>5</td></tr><tr><td>V009</td><td>content</td><td>1.0</td><td>0.2</td><td>0.33333333333333337</td><td>1</td><td>5</td></tr><tr><td>V010</td><td>content</td><td>1.0</td><td>0.2</td><td>0.33333333333333337</td><td>2</td><td>10</td></tr></table>
+    <ul><li>Fixed minimum shot length can miss very rapid edits.</li><li>Gradual transitions do not have a single unambiguous hard-cut frame.</li><li>Sampling OCR every five seconds misses short-lived text; returned intervals are sampling bins, not tracked visibility.</li><li>English-only demo OCR does not evaluate Korean or Chinese coverage. The adapter accepts compatible language groups, e.g. ko en or ch_sim en in separate runs.</li><li>Music mixed with narration can produce spurious beats and speech hallucinations. Without independent beat/transcript labels, counts and plausible text are not accuracy evidence.</li><li>CLIP shot-size terminology is prompt-sensitive and may confuse product detail with face framing. Three-frame averaging is a tested variant, not assumed improvement.</li></ul>
+    <h2>Learned comparisons</h2><pre>{
+  &quot;seed&quot;: 42,
+  &quot;split&quot;: {
+    &quot;V001&quot;: &quot;train&quot;,
+    &quot;V002&quot;: &quot;train&quot;,
+    &quot;V003&quot;: &quot;train&quot;,
+    &quot;V004&quot;: &quot;train&quot;,
+    &quot;V005&quot;: &quot;train&quot;,
+    &quot;V006&quot;: &quot;train&quot;,
+    &quot;V007&quot;: &quot;train&quot;,
+    &quot;V008&quot;: &quot;train&quot;,
+    &quot;V009&quot;: &quot;train&quot;,
+    &quot;V010&quot;: &quot;train&quot;,
+    &quot;V011&quot;: &quot;train&quot;,
+    &quot;V012&quot;: &quot;train&quot;,
+    &quot;V013&quot;: &quot;train&quot;,
+    &quot;V014&quot;: &quot;train&quot;,
+    &quot;V015&quot;: &quot;train&quot;,
+    &quot;V016&quot;: &quot;train&quot;,
+    &quot;V017&quot;: &quot;train&quot;,
+    &quot;V018&quot;: &quot;train&quot;,
+    &quot;V019&quot;: &quot;train&quot;,
+    &quot;V020&quot;: &quot;train&quot;,
+    &quot;V021&quot;: &quot;train&quot;,
+    &quot;V022&quot;: &quot;validation&quot;,
+    &quot;V023&quot;: &quot;validation&quot;,
+    &quot;V024&quot;: &quot;validation&quot;,
+    &quot;V025&quot;: &quot;test&quot;,
+    &quot;V026&quot;: &quot;test&quot;,
+    &quot;V027&quot;: &quot;test&quot;,
+    &quot;V028&quot;: &quot;test&quot;,
+    &quot;V029&quot;: &quot;test&quot;,
+    &quot;V030&quot;: &quot;test&quot;
+  },
+  &quot;sampling&quot;: &quot;up to 8 evenly spaced reference transitions and 4 reference shots per video&quot;,
+  &quot;scope&quot;: &quot;reference-conditioned pilot, not independent end-to-end performance&quot;,
+  &quot;transition_labels&quot;: [
+    &quot;hard_cut&quot;,
+    &quot;non_hard_cut&quot;
+  ],
+  &quot;cnn_epochs&quot;: 15,
+  &quot;validation_selection&quot;: &quot;best macro F1, test used only for final reporting&quot;,
+  &quot;transition_cnn&quot;: {
+    &quot;n&quot;: 41,
+    &quot;accuracy&quot;: 0.9512195121951219,
+    &quot;macro_f1&quot;: 0.4875,
+    &quot;confusion_matrix&quot;: [
+      [
+        39,
+        0
+      ],
+      [
+        2,
+        0
+      ]
+    ],
+    &quot;confusion_matrix_label_order&quot;: [
+      0,
+      1
+    ]
+  },
+  &quot;transition_test_class_counts&quot;: {
+    &quot;0&quot;: 39,
+    &quot;1&quot;: 2
+  },
+  &quot;transition_rules&quot;: {
+    &quot;n&quot;: 41,
+    &quot;accuracy&quot;: 0.8048780487804879,
+    &quot;macro_f1&quot;: 0.6095238095238095,
+    &quot;confusion_matrix&quot;: [
+      [
+        31,
+        8
+      ],
+      [
+        0,
+        2
+      ]
+    ],
+    &quot;confusion_matrix_label_order&quot;: [
+      0,
+      1
+    ]
+  },
+  &quot;transition_majority_baseline&quot;: {
+    &quot;n&quot;: 41,
+    &quot;accuracy&quot;: 0.9512195121951219,
+    &quot;macro_f1&quot;: 0.4875,
+    &quot;confusion_matrix&quot;: [
+      [
+        39,
+        0
+      ],
+      [
+        2,
+        0
+      ]
+    ],
+    &quot;confusion_matrix_label_order&quot;: [
+      0,
+      1
+    ]
+  },
+  &quot;linear_probe_C&quot;: 1,
+  &quot;shot_size_linear_probe&quot;: {
+    &quot;n&quot;: 23,
+    &quot;accuracy&quot;: 0.30434782608695654,
+    &quot;macro_f1&quot;: 0.20300751879699247,
+    &quot;confusion_matrix&quot;: [
+      [
+        0,
+        3,
+        0,
+        2
+      ],
+      [
+        0,
+        2,
+        0,
+        2
+      ],
+      [
+        0,
+        4,
+        0,
+        4
+      ],
+      [
+        0,
+        1,
+        0,
+        5
+      ]
+    ],
+    &quot;confusion_matrix_label_order&quot;: [
+      0,
+      1,
+      2,
+      4
+    ]
+  },
+  &quot;shot_size_labels&quot;: [
+    &quot;extreme_close_up&quot;,
+    &quot;close_up&quot;,
+    &quot;medium_shot&quot;,
+    &quot;wide_shot&quot;,
+    &quot;detail_shot&quot;
+  ],
+  &quot;shot_size_zero_shot_same_test&quot;: {
+    &quot;n&quot;: 23,
+    &quot;accuracy&quot;: 0.2608695652173913,
+    &quot;macro_f1&quot;: 0.1779020979020979,
+    &quot;confusion_matrix&quot;: [
+      [
+        3,
+        2,
+        0,
+        0,
+        0
+      ],
+      [
+        2,
+        0,
+        2,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        1,
+        1,
+        5
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        4,
+        0,
+        0,
+        0,
+        2
+      ]
+    ],
+    &quot;confusion_matrix_label_order&quot;: [
+      0,
+      1,
+      2,
+      3,
+      4
+    ]
+  }
+}</pre>
+    <p>The small binary transition CNN uses two 32×32 frames concatenated as six channels, two convolution layers, global pooling and a linear head. Train for 15 epochs; select by validation macro F1. The shot-size linear probe uses frozen normalized CLIP image embeddings and logistic regression, choosing C from 0.01, 0.1, 1, 10 on validation accuracy. First 30 video IDs split 21/3/6. Each video contributes up to eight evenly spaced reference transitions and four reference shots. No creator/campaign grouping was verified. Binary transition results do not establish the optional four-class target.</p>
+    <p><strong>Class-imbalance risk:</strong> The pilot transition test contains 39 hard cuts and only two non-hard cuts. Predicting hard_cut for everything scores 95.12% accuracy. Compare the CNN with that majority baseline and inspect minority recall in the confusion matrix; high accuracy alone is not evidence of useful transition recognition. Shot-size results use only 23 test shots and must not be generalized to the whole dataset.</p>
+    <h2>Remaining requirements</h2><p>Independent beat, OCR and speech references are needed before their requested accuracy metrics can be reported. TransNetV2 has only the paired sample coverage shown above. Beat This! output can be compared for event counts and timestamps, not accuracy without reference beats. Neither the small sample nor video-only split establishes broad generalization. No claimed target has been achieved unless measured in the table.</p>
+    <h2>Run evidence</h2><table><tr><th>video_id</th><th>variant</th><th>items</th><th>runtime_seconds</th><th>status</th></tr><tr><td>V001</td><td>asr_tiny</td><td>14</td><td>None</td><td>ran successfully</td></tr><tr><td>V001</td><td>asr_tiny_beam5</td><td>10</td><td>23.874488300003577</td><td>ran successfully</td></tr><tr><td>V001</td><td>beats_beat_this</td><td>0</td><td>None</td><td>ran successfully</td></tr><tr><td>V001</td><td>beats_hpss</td><td>101</td><td>16.172389100000146</td><td>ran successfully</td></tr><tr><td>V001</td><td>beats_raw</td><td>122</td><td>61.40411139999924</td><td>ran successfully</td></tr><tr><td>V001</td><td>ocr</td><td>2</td><td>75.68334659999528</td><td>ran successfully</td></tr><tr><td>V001</td><td>shots_adaptive</td><td>22</td><td>None</td><td>ran successfully</td></tr><tr><td>V001</td><td>shots_content</td><td>18</td><td>None</td><td>ran successfully</td></tr><tr><td>V001</td><td>shot_size</td><td>18</td><td>30.385866900003748</td><td>ran successfully</td></tr><tr><td>V001</td><td>shot_size_ensemble</td><td>18</td><td>74.70085229999677</td><td>ran successfully</td></tr><tr><td>V001</td><td>transitions</td><td>17</td><td>None</td><td>ran successfully</td></tr><tr><td>V002</td><td>asr_tiny</td><td>10</td><td>10.622806400002446</td><td>ran successfully</td></tr><tr><td>V002</td><td>asr_tiny_beam5</td><td>10</td><td>23.996708600010606</td><td>ran successfully</td></tr><tr><td>V002</td><td>beats_hpss</td><td>70</td><td>7.3531665999908</td><td>ran successfully</td></tr><tr><td>V002</td><td>beats_raw</td><td>89</td><td>1.3327055999980075</td><td>ran successfully</td></tr><tr><td>V002</td><td>ocr</td><td>11</td><td>70.95267769999919</td><td>ran successfully</td></tr><tr><td>V002</td><td>shots_adaptive</td><td>2</td><td>None</td><td>ran successfully</td></tr><tr><td>V002</td><td>shots_content</td><td>1</td><td>None</td><td>ran successfully</td></tr><tr><td>V002</td><td>shots_transnet</td><td>1</td><td>None</td><td>ran successfully</td></tr><tr><td>V002</td><td>shot_size</td><td>1</td><td>1.0514351000019815</td><td>ran successfully</td></tr><tr><td>V002</td><td>shot_size_ensemble</td><td>1</td><td>4.799297999998089</td><td>ran successfully</td></tr><tr><td>V002</td><td>shot_size_trained</td><td>1</td><td>None</td><td>ran successfully</td></tr><tr><td>V002</td><td>transitions</td><td>0</td><td>None</td><td>ran successfully</td></tr><tr><td>V003</td><td>asr_tiny</td><td>17</td><td>12.328524199998355</td><td>ran successfully</td></tr><tr><td>V003</td><td>asr_tiny_beam5</td><td>17</td><td>21.314442300004885</td><td>ran successfully</td></tr><tr><td>V003</td><td>beats_hpss</td><td>124</td><td>7.840301699994598</td><td>ran successfully</td></tr><tr><td>V003</td><td>beats_raw</td><td>90</td><td>1.9480086999974446</td><td>ran successfully</td></tr><tr><td>V003</td><td>ocr</td><td>33</td><td>83.42206959999749</td><td>ran successfully</td></tr><tr><td>V003</td><td>shots_adaptive</td><td>6</td><td>None</td><td>ran successfully</td></tr><tr><td>V003</td><td>shots_content</td><td>7</td><td>None</td><td>ran successfully</td></tr><tr><td>V003</td><td>shot_size</td><td>7</td><td>11.285826299994369</td><td>ran successfully</td></tr><tr><td>V003</td><td>shot_size_ensemble</td><td>7</td><td>26.22886259999359</td><td>ran successfully</td></tr><tr><td>V003</td><td>transitions</td><td>6</td><td>None</td><td>ran successfully</td></tr><tr><td>V004</td><td>shots_adaptive</td><td>17</td><td>None</td><td>ran successfully</td></tr><tr><td>V004</td><td>shots_content</td><td>10</td><td>None</td><td>ran successfully</td></tr><tr><td>V005</td><td>shots_adaptive</td><td>7</td><td>None</td><td>ran successfully</td></tr><tr><td>V005</td><td>shots_content</td><td>7</td><td>None</td><td>ran successfully</td></tr><tr><td>V005</td><td>shots_transnet</td><td>7</td><td>None</td><td>ran successfully</td></tr><tr><td>V006</td><td>shots_adaptive</td><td>2</td><td>None</td><td>ran successfully</td></tr><tr><td>V006</td><td>shots_content</td><td>1</td><td>None</td><td>ran successfully</td></tr><tr><td>V007</td><td>shots_adaptive</td><td>1</td><td>None</td><td>ran successfully</td></tr><tr><td>V007</td><td>shots_content</td><td>1</td><td>None</td><td>ran successfully</td></tr><tr><td>V008</td><td>shots_adaptive</td><td>16</td><td>None</td><td>ran successfully</td></tr><tr><td>V008</td><td>shots_content</td><td>13</td><td>None</td><td>ran successfully</td></tr><tr><td>V009</td><td>shots_adaptive</td><td>4</td><td>None</td><td>ran successfully</td></tr><tr><td>V009</td><td>shots_content</td><td>2</td><td>None</td><td>ran successfully</td></tr><tr><td>V009</td><td>transitions_trained</td><td>1</td><td>None</td><td>ran successfully</td></tr><tr><td>V010</td><td>shots_adaptive</td><td>4</td><td>None</td><td>ran successfully</td></tr><tr><td>V010</td><td>shots_content</td><td>3</td><td>None</td><td>ran successfully</td></tr><tr><td>V011</td><td>shots_adaptive</td><td>6</td><td>None</td><td>ran successfully</td></tr><tr><td>V011</td><td>shots_content</td><td>4</td><td>None</td><td>ran successfully</td></tr><tr><td>V012</td><td>beats_beat_this</td><td>25</td><td>None</td><td>ran successfully</td></tr><tr><td>V012</td><td>shots_adaptive</td><td>12</td><td>None</td><td>ran successfully</td></tr><tr><td>V012</td><td>shots_content</td><td>12</td><td>None</td><td>ran successfully</td></tr><tr><td>V013</td><td>shots_adaptive</td><td>22</td><td>None</td><td>ran successfully</td></tr><tr><td>V013</td><td>shots_content</td><td>23</td><td>None</td><td>ran successfully</td></tr><tr><td>V014</td><td>shots_adaptive</td><td>4</td><td>None</td><td>ran successfully</td></tr><tr><td>V014</td><td>shots_content</td><td>4</td><td>None</td><td>ran successfully</td></tr><tr><td>V015</td><td>shots_adaptive</td><td>6</td><td>None</td><td>ran successfully</td></tr><tr><td>V015</td><td>shots_content</td><td>6</td><td>None</td><td>ran successfully</td></tr><tr><td>V016</td><td>shots_adaptive</td><td>29</td><td>None</td><td>ran successfully</td></tr><tr><td>V016</td><td>shots_content</td><td>25</td><td>None</td><td>ran successfully</td></tr><tr><td>V017</td><td>shots_adaptive</td><td>12</td><td>None</td><td>ran successfully</td></tr><tr><td>V017</td><td>shots_content</td><td>11</td><td>None</td><td>ran successfully</td></tr><tr><td>V018</td><td>shots_adaptive</td><td>4</td><td>None</td><td>ran successfully</td></tr><tr><td>V018</td><td>shots_content</td><td>4</td><td>None</td><td>ran successfully</td></tr><tr><td>V019</td><td>shots_adaptive</td><td>14</td><td>None</td><td>ran successfully</td></tr><tr><td>V019</td><td>shots_content</td><td>11</td><td>None</td><td>ran successfully</td></tr><tr><td>V020</td><td>shots_adaptive</td><td>18</td><td>None</td><td>ran successfully</td></tr><tr><td>V020</td><td>shots_content</td><td>14</td><td>None</td><td>ran successfully</td></tr><tr><td>V021</td><td>shots_adaptive</td><td>1</td><td>None</td><td>ran successfully</td></tr><tr><td>V021</td><td>shots_content</td><td>1</td><td>None</td><td>ran successfully</td></tr><tr><td>V022</td><td>shots_adaptive</td><td>21</td><td>None</td><td>ran successfully</td></tr><tr><td>V022</td><td>shots_content</td><td>10</td><td>None</td><td>ran successfully</td></tr><tr><td>V023</td><td>shots_adaptive</td><td>24</td><td>None</td><td>ran successfully</td></tr><tr><td>V023</td><td>shots_content</td><td>18</td><td>None</td><td>ran successfully</td></tr><tr><td>V024</td><td>shots_adaptive</td><td>23</td><td>None</td><td>ran successfully</td></tr><tr><td>V024</td><td>shots_content</td><td>22</td><td>None</td><td>ran successfully</td></tr><tr><td>V025</td><td>shots_adaptive</td><td>25</td><td>None</td><td>ran successfully</td></tr><tr><td>V025</td><td>shots_content</td><td>22</td><td>None</td><td>ran successfully</td></tr><tr><td>V026</td><td>shots_adaptive</td><td>6</td><td>None</td><td>ran successfully</td></tr><tr><td>V026</td><td>shots_content</td><td>4</td><td>None</td><td>ran successfully</td></tr><tr><td>V027</td><td>shots_adaptive</td><td>20</td><td>None</td><td>ran successfully</td></tr><tr><td>V027</td><td>shots_content</td><td>21</td><td>None</td><td>ran successfully</td></tr><tr><td>V028</td><td>shots_adaptive</td><td>3</td><td>None</td><td>ran successfully</td></tr><tr><td>V028</td><td>shots_content</td><td>3</td><td>None</td><td>ran successfully</td></tr><tr><td>V029</td><td>shots_adaptive</td><td>8</td><td>None</td><td>ran successfully</td></tr><tr><td>V029</td><td>shots_content</td><td>6</td><td>None</td><td>ran successfully</td></tr><tr><td>V030</td><td>shots_adaptive</td><td>25</td><td>None</td><td>ran successfully</td></tr><tr><td>V030</td><td>shots_content</td><td>24</td><td>None</td><td>ran successfully</td></tr></table>
+    <h2>Reproduce</h2><pre>python -m pip install -e ".[dev,phase2]"
+python scripts/run_phase2_study.py PATH_TO_RESOURCES --output artifacts/phase2/study --limit 30 --heavy-samples 3
+python scripts/phase2_report.py artifacts/phase2/study PATH_TO_RESOURCES OUTPUT_FOLDER</pre>
+    <h2>Sources</h2><p>Provided 200-video merged CSV (SHA256 4d4dbefb1134d94537b313678f524ff5a39802e3707fe43fcb40fb62d882bc3a). Implementation references:
+    <a href="https://www.scenedetect.com/docs/latest/api/detectors.html">PySceneDetect</a>,
+    <a href="https://github.com/SYSTRAN/faster-whisper">faster-whisper</a>,
+    <a href="https://github.com/JaidedAI/EasyOCR">EasyOCR</a>,
+    <a href="https://huggingface.co/docs/transformers/model_doc/clip">CLIP</a>.</p></html>

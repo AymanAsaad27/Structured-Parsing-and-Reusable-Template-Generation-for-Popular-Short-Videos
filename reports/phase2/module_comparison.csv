@@ -1,0 +1,24 @@
+﻿module,variant,sample_count,metric,value,precision,recall,status
+shots,content,30,micro boundary F1,0.7790368271954675,0.9892086330935251,0.6425233644859814,measured supplied-reference agreement
+shots,adaptive,30,micro boundary F1,0.8713910761154855,0.9940119760479041,0.7757009345794392,measured supplied-reference agreement
+shots,content paired V002,1,boundary F1 on same comparison video,0,0.0,0.0,"paired sample, not full-corpus TransNet benchmark"
+shots,adaptive paired V002,1,boundary F1 on same comparison video,0.5,1.0,0.3333333333333333,"paired sample, not full-corpus TransNet benchmark"
+shots,content paired V005,1,boundary F1 on same comparison video,1.0,1.0,1.0,"paired sample, not full-corpus TransNet benchmark"
+shots,adaptive paired V005,1,boundary F1 on same comparison video,1.0,1.0,1.0,"paired sample, not full-corpus TransNet benchmark"
+shots,transnet paired V002,1,boundary F1 on same comparison video,0,0.0,0.0,"paired sample, not full-corpus TransNet benchmark"
+shots,transnet paired V005,1,boundary F1 on same comparison video,1.0,1.0,1.0,"paired sample, not full-corpus TransNet benchmark"
+transitions,transition_rules,41,video-disjoint pilot test accuracy,0.8048780487804879,,,21/3/6 video split; reference-conditioned; see confusion matrices
+transitions,transition_majority_baseline,41,video-disjoint pilot test accuracy,0.9512195121951219,,,21/3/6 video split; reference-conditioned; see confusion matrices
+transitions,transition_cnn,41,video-disjoint pilot test accuracy,0.9512195121951219,,,21/3/6 video split; reference-conditioned; see confusion matrices
+shot_size,shot_size_linear_probe,23,video-disjoint pilot test accuracy,0.30434782608695654,,,21/3/6 video split; reference-conditioned; see confusion matrices
+shot_size,shot_size_zero_shot_same_test,23,video-disjoint pilot test accuracy,0.2608695652173913,,,21/3/6 video split; reference-conditioned; see confusion matrices
+shot_size,shot_size,26,midpoint-aligned accuracy,0.2692307692307692,,,conditional on detected intervals; ambiguous mixed label excluded
+shot_size,shot_size_ensemble,26,midpoint-aligned accuracy,0.2692307692307692,,,conditional on detected intervals; ambiguous mixed label excluded
+shot_size,shot_size_trained,1,midpoint-aligned accuracy,0.0,,,conditional on detected intervals; ambiguous mixed label excluded
+transitions,rules,22,matched-candidate accuracy,1.0,,,conditional accuracy; unmatched/missed transitions excluded
+beats,raw,,accuracy metric,,,,not measurable: no independent reference annotations found
+beats,hpss,,accuracy metric,,,,not measurable: no independent reference annotations found
+beats,Beat This! small0,,accuracy metric,,,,not measurable: no independent reference annotations found
+ocr,sampled EasyOCR,,accuracy metric,,,,not measurable: no independent reference annotations found
+asr,tiny beam1,,accuracy metric,,,,not measurable: no independent reference annotations found
+asr,tiny beam5,,accuracy metric,,,,not measurable: no independent reference annotations found

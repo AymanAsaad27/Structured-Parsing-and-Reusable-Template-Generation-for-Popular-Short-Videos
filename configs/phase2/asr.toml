@@ -1,5 +1,6 @@
-# Planned configuration; no inference runner consumes this yet.
+# Reference defaults. Reproduce with matching CLI arguments.
 module = "asr"
-backend = "unimplemented"
-seed = 42
-output_root = "artifacts/phase2/asr"
+
+[options]
+model = "tiny"
+beam_size = 1

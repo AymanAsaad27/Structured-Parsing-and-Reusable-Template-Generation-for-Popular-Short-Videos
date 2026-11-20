@@ -1,5 +1,5 @@
-# Planned configuration; no inference runner consumes this yet.
+# Reference defaults. Reproduce with matching CLI arguments.
 module = "shot_size"
-backend = "unimplemented"
-seed = 42
-output_root = "artifacts/phase2/shot_size"
+
+[options]
+ensemble = false

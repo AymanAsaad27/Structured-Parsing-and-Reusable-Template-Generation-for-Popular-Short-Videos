@@ -1,5 +1,5 @@
-# Planned configuration; no inference runner consumes this yet.
+# Reference defaults. Reproduce with matching CLI arguments.
 module = "transitions"
-backend = "unimplemented"
-seed = 42
-output_root = "artifacts/phase2/transitions"
+
+[options]
+# Rule-based binary classifier; checkpoint enables trained CNN.

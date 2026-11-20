@@ -15,13 +15,18 @@ Repository = "https://github.com/AymanAsaad27/Structured-Parsing-and-Reusable-Te
 
 [project.optional-dependencies]
 dev = ["pytest>=8,<10", "ruff>=0.9,<1", "build>=1,<2"]
-shots = ["scenedetect[opencv]>=0.6,<0.7"]
-beats = ["librosa>=0.10,<1", "soundfile>=0.12,<1"]
-asr = ["faster-whisper>=1,<2"]
-ocr = ["easyocr>=1.7,<2"]
+shots = ["scenedetect[opencv]>=0.6,<0.7", "av>=14,<20"]
+beats = ["librosa>=0.10,<2", "soundfile>=0.12,<1", "imageio-ffmpeg>=0.6,<1", "opencv-python>=4.10,<6"]
+asr = ["faster-whisper>=1,<2", "soundfile>=0.12,<1", "imageio-ffmpeg>=0.6,<1", "opencv-python>=4.10,<6"]
+ocr = ["easyocr>=1.7,<2", "av>=14,<20"]
+vision = ["torch>=2.6", "torchvision>=0.21", "transformers>=4.50,<5", "av>=14,<20", "opencv-python>=4.10,<6"]
+beat-model = ["beat-this>=1.1,<2", "torchaudio>=2"]
+phase2 = ["scenedetect[opencv]>=0.6,<0.7", "librosa>=0.10,<2", "soundfile>=0.12,<1", "imageio-ffmpeg>=0.6,<1", "faster-whisper>=1,<2", "easyocr>=1.7,<2", "transformers>=4.50,<5", "torch>=2.6", "torchvision>=0.21", "scikit-learn>=1.5,<2", "openpyxl>=3.1,<4"]
 
 [project.scripts]
 bvt = "beauty_video_templates.cli:main"
+bvt-parse = "beauty_video_templates.parsing.runner:main"
+bvt-evaluate = "beauty_video_templates.evaluation.runner:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
@@ -35,3 +40,6 @@ testpaths = ["tests"]
 [tool.ruff]
 line-length = 100
 target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]

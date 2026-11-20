@@ -1,1 +1,1 @@
-"""Phase 2 and 5 evaluation metrics. Implementation pending."""
+"""Phase 2 event, text and box metrics; later system metrics remain planned."""

@@ -1,0 +1,198 @@
+{
+  "seed": 42,
+  "split": {
+    "V001": "train",
+    "V002": "train",
+    "V003": "train",
+    "V004": "train",
+    "V005": "train",
+    "V006": "train",
+    "V007": "train",
+    "V008": "train",
+    "V009": "train",
+    "V010": "train",
+    "V011": "train",
+    "V012": "train",
+    "V013": "train",
+    "V014": "train",
+    "V015": "train",
+    "V016": "train",
+    "V017": "train",
+    "V018": "train",
+    "V019": "train",
+    "V020": "train",
+    "V021": "train",
+    "V022": "validation",
+    "V023": "validation",
+    "V024": "validation",
+    "V025": "test",
+    "V026": "test",
+    "V027": "test",
+    "V028": "test",
+    "V029": "test",
+    "V030": "test"
+  },
+  "sampling": "up to 8 evenly spaced reference transitions and 4 reference shots per video",
+  "scope": "reference-conditioned pilot, not independent end-to-end performance",
+  "transition_labels": [
+    "hard_cut",
+    "non_hard_cut"
+  ],
+  "cnn_epochs": 15,
+  "validation_selection": "best macro F1, test used only for final reporting",
+  "transition_cnn": {
+    "n": 41,
+    "accuracy": 0.9512195121951219,
+    "macro_f1": 0.4875,
+    "confusion_matrix": [
+      [
+        39,
+        0
+      ],
+      [
+        2,
+        0
+      ]
+    ],
+    "confusion_matrix_label_order": [
+      0,
+      1
+    ]
+  },
+  "transition_test_class_counts": {
+    "0": 39,
+    "1": 2
+  },
+  "transition_rules": {
+    "n": 41,
+    "accuracy": 0.8048780487804879,
+    "macro_f1": 0.6095238095238095,
+    "confusion_matrix": [
+      [
+        31,
+        8
+      ],
+      [
+        0,
+        2
+      ]
+    ],
+    "confusion_matrix_label_order": [
+      0,
+      1
+    ]
+  },
+  "transition_majority_baseline": {
+    "n": 41,
+    "accuracy": 0.9512195121951219,
+    "macro_f1": 0.4875,
+    "confusion_matrix": [
+      [
+        39,
+        0
+      ],
+      [
+        2,
+        0
+      ]
+    ],
+    "confusion_matrix_label_order": [
+      0,
+      1
+    ]
+  },
+  "linear_probe_C": 1,
+  "shot_size_linear_probe": {
+    "n": 23,
+    "accuracy": 0.30434782608695654,
+    "macro_f1": 0.20300751879699247,
+    "confusion_matrix": [
+      [
+        0,
+        3,
+        0,
+        2
+      ],
+      [
+        0,
+        2,
+        0,
+        2
+      ],
+      [
+        0,
+        4,
+        0,
+        4
+      ],
+      [
+        0,
+        1,
+        0,
+        5
+      ]
+    ],
+    "confusion_matrix_label_order": [
+      0,
+      1,
+      2,
+      4
+    ]
+  },
+  "shot_size_labels": [
+    "extreme_close_up",
+    "close_up",
+    "medium_shot",
+    "wide_shot",
+    "detail_shot"
+  ],
+  "shot_size_zero_shot_same_test": {
+    "n": 23,
+    "accuracy": 0.2608695652173913,
+    "macro_f1": 0.1779020979020979,
+    "confusion_matrix": [
+      [
+        3,
+        2,
+        0,
+        0,
+        0
+      ],
+      [
+        2,
+        0,
+        2,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        1,
+        1,
+        5
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        4,
+        0,
+        0,
+        0,
+        2
+      ]
+    ],
+    "confusion_matrix_label_order": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ]
+  }
+}

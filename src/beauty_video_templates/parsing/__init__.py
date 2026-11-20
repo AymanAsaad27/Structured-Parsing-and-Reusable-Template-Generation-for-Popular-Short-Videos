@@ -1,1 +1,1 @@
-"""Phase 2 independent analysis adapters. Implementation pending."""
+"""Phase 2 local analysis adapters with a shared JSON interface."""

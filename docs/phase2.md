@@ -1,6 +1,6 @@
 # Phase 2 implementation plan
 
-All six module files are extension points. No detector is implemented yet.
+The original checklist below is retained as the implementation roadmap. All six module adapters are now implemented; see [current usage and limits](phase2_usage.md). A method listed as a comparison is not necessarily evaluated in every run; use the measured report for actual coverage.
 
 | Module | Baseline | Comparison | Evaluation |
 | --- | --- | --- | --- |
@@ -20,7 +20,7 @@ All six module files are extension points. No detector is implemented yet.
 5. Transition and shot-size baselines.
 6. Improved methods, held-out comparisons, and failure analysis.
 
-Each real backend implements `ParsingBackend.parse(Path) -> dict` and returns output accepted by `validate_result`. Add a CLI inference command only after a backend works. Config TOML files are drafts and are not consumed by a runner yet.
+Each backend implements `ParsingBackend.parse(Path) -> dict` and returns output accepted by `validate_result`. `bvt-parse` is the implemented inference command. Config TOML files record reference defaults; explicit CLI arguments remain the execution interface.
 
 ## Definition of done
 

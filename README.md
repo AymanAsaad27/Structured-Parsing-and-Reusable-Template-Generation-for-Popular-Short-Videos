@@ -2,7 +2,9 @@
 
 Structured parsing and reusable editing templates for 15–60 second vertical beauty videos.
 
-**Status: development scaffold.** The command-line tool, parsing-result validation, and core tests work. AI backends, template generation, rendering, and evaluation metrics are planned. Synthetic examples are not research results.
+**Status: Phase 2 implementation and pilot study.** Six local parsing adapters, timestamp handling, output validation, and evaluation utilities are implemented. Later-phase template generation and rendering remain planned. Synthetic examples are not research results. See [Phase 2 usage](docs/phase2_usage.md).
+
+The first 30-video pilot measures boundary F1 of **0.779** for content detection and **0.871** for adaptive detection, using one-to-one matching within ±2 verified source frames. These are agreement scores against the supplied annotations, not independently verified benchmark accuracy. See the [measured report](reports/phase2/Phase_2_Report.html) and [comparison table](reports/phase2/module_comparison.csv).
 
 ## Quick start
 

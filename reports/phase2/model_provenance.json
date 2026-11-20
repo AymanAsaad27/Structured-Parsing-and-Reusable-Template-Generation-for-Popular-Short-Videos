@@ -1,0 +1,36 @@
+{
+  "transnet_architecture": {
+    "repository": "https://github.com/soCzech/TransNetV2",
+    "revision": "85cef72af9a916bdfd7cc94a670c9cdfbf12d1ed"
+  },
+  "transnet_weights": {
+    "distribution": "transnetv2-pytorch 1.0.5 community packaging",
+    "sha256": "a313d0b3bebfa9a71914b375bfdf918a30b5c3b1e6be51972d35dd8078b442de"
+  },
+  "clip": {
+    "model": "openai/clip-vit-base-patch32",
+    "cached_revisions": [
+      "3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268",
+      "c237dc49a33fc61debc9276459120b7eac67e7ef"
+    ]
+  },
+  "speech": {
+    "model": "Systran/faster-whisper-tiny",
+    "cached_revisions": [
+      "d90ca5fe260221311c53c58e660288d3deb8d356"
+    ]
+  },
+  "beats": {
+    "model": "Beat This! small0"
+  },
+  "ocr": {
+    "engine": "EasyOCR 1.7.2",
+    "languages_demo": [
+      "en"
+    ]
+  },
+  "trained_model_sha256": {
+    "shot_size_probe.npz": "74f6d9b793b0ab4a0bf576cc0b367cc598eb8926216f97398a48dfd50413e90a",
+    "transition_cnn.pt": "ab283d0ca0b960e6c45f0537f24d409ff6b677911a77a9a1e9b03d2d85e3c5d1"
+  }
+}

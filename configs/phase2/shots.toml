@@ -1,5 +1,7 @@
-# Planned configuration; no inference runner consumes this yet.
+# Reference defaults. Reproduce with matching CLI arguments.
 module = "shots"
-backend = "unimplemented"
-seed = 42
-output_root = "artifacts/phase2/shots"
+
+[options]
+backend = "content"
+threshold = 27.0
+min_scene_len = 6
