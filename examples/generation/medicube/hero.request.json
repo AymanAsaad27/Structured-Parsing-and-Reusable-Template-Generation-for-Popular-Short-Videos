@@ -1,0 +1,20 @@
+{
+  "model": "doubao-seedance-2-5-260628",
+  "content": [
+    {
+      "type": "text",
+      "text": "Create one 4-second vertical product introduction shot for Medicube Collagen Night Wrapping Mask. Use @image1 only as the exact product identity reference: preserve the rose-gold tube, clear pink cap, proportions, white medicube logo and packaging label. One single upright tube resting on a pale blush tabletop in soft studio light. Slow subtle camera push-in, product stays stationary and fully visible. Clean minimal background. No hands, no faces, no extra products, no captions, no added logos, no voice, no music, no cuts. Keep the tube physically rigid and packaging text as stable as possible. This is a product reveal, not a skin-result demonstration."
+    },
+    {
+      "type": "image_url",
+      "image_url": {
+        "url": "https://cdn.shopify.com/s/files/1/0156/3905/2336/files/00_6d878aff-381d-4cd6-b9e1-d8b924225025.jpg?v=1766713832"
+      },
+      "role": "reference_image"
+    }
+  ],
+  "duration": 4,
+  "resolution": "720p",
+  "ratio": "9:16",
+  "generate_audio": false
+}

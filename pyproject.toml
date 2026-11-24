@@ -15,6 +15,7 @@ Repository = "https://github.com/AymanAsaad27/Structured-Parsing-and-Reusable-Te
 
 [project.optional-dependencies]
 dev = ["pytest>=8,<10", "ruff>=0.9,<1", "build>=1,<2"]
+generation = ["requests>=2.32,<3", "Pillow>=10,<14", "av>=14,<20", "imageio-ffmpeg>=0.6,<1"]
 shots = ["scenedetect[opencv]>=0.6,<0.7", "av>=14,<20"]
 beats = ["librosa>=0.10,<2", "soundfile>=0.12,<1", "imageio-ffmpeg>=0.6,<1", "opencv-python>=4.10,<6"]
 asr = ["faster-whisper>=1,<2", "soundfile>=0.12,<1", "imageio-ffmpeg>=0.6,<1", "opencv-python>=4.10,<6"]

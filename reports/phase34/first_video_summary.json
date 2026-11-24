@@ -1,0 +1,25 @@
+{
+  "template_id": "medicube_demonstration_20s_v1",
+  "status": "one prototype rendered",
+  "render": {
+    "width": 720,
+    "height": 1280,
+    "fps": 24.0,
+    "duration_seconds": 20.0,
+    "audio_streams": 1,
+    "decoded_frames": 480
+  },
+  "boundary_reparse": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "matched": 4,
+    "predicted": 4,
+    "reference": 4
+  },
+  "unique_generated_clips": 4,
+  "new_clips_this_step": 3,
+  "usage_total_tokens": 349200,
+  "beat_sync": "not established",
+  "remaining": "VLM template extraction, clustering, automated matching, broader material sets and independent evaluation"
+}

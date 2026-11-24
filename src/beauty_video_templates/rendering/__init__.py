@@ -1,1 +1,1 @@
-"""Phase 4 timeline assembly and synthesis. Implementation pending."""
+"""Prototype FFmpeg rendering of explicit clip timelines with caption overlays."""

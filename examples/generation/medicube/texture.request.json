@@ -1,0 +1,20 @@
+{
+  "model": "doubao-seedance-2-5-260628",
+  "content": [
+    {
+      "type": "text",
+      "text": "Create a single continuous 4-second vertical 9:16 shot. Macro beauty texture shot. A clean white cosmetic spatula slowly lifts a small bead of translucent glossy gel above a blush pink glass dish. Show a gentle short stretch of gel with realistic restrained viscosity. Soft pale pink studio lighting and neutral clean background. No hands, no faces, no product tube, no lettering. A staged illustrative texture shot associated with the referenced Medicube Collagen Night Wrapping Mask; do not depict skin results or claim ingredient efficacy. No cuts, no captions, no new logos, no music, no speech."
+    },
+    {
+      "type": "image_url",
+      "image_url": {
+        "url": "https://cdn.shopify.com/s/files/1/0156/3905/2336/files/00_6d878aff-381d-4cd6-b9e1-d8b924225025.jpg?v=1766713832"
+      },
+      "role": "reference_image"
+    }
+  ],
+  "resolution": "720p",
+  "duration": 4,
+  "ratio": "9:16",
+  "generate_audio": false
+}

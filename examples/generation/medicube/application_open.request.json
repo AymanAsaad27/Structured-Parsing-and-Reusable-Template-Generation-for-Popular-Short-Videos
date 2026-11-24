@@ -1,0 +1,20 @@
+{
+  "model": "doubao-seedance-2-5-260628",
+  "content": [
+    {
+      "type": "text",
+      "text": "Create a single continuous 4-second vertical 9:16 shot. An overhead beauty demonstration showing only two adult hands and the back of one hand, no face or person visible. One smooth cosmetic spatula applies a small amount of translucent cosmetic gel to a small area on the back of the other hand in a single clean stroke. Soft blush studio tabletop background, clean realistic skin and natural anatomy, stable camera. No visible change in skin quality or tone, no before/after, no medical claims. The product tube is outside the frame. This is a staged illustrative application scene for the referenced Medicube Collagen Night Wrapping Mask, not footage of a real efficacy test. No cuts, no captions, no new logos, no music, no speech."
+    },
+    {
+      "type": "image_url",
+      "image_url": {
+        "url": "https://cdn.shopify.com/s/files/1/0156/3905/2336/files/00_6d878aff-381d-4cd6-b9e1-d8b924225025.jpg?v=1766713832"
+      },
+      "role": "reference_image"
+    }
+  ],
+  "resolution": "720p",
+  "duration": 4,
+  "ratio": "9:16",
+  "generate_audio": false
+}

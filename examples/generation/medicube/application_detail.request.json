@@ -1,0 +1,20 @@
+{
+  "model": "doubao-seedance-2-5-260628",
+  "content": [
+    {
+      "type": "text",
+      "text": "Create a single continuous 4-second vertical 9:16 shot. Close-up detail of the back of an adult hand resting steadily on a blush pink tabletop. A second hand uses a smooth cosmetic spatula to spread an already present tiny amount of translucent gel into one thin even layer. Show only hands, no face or body, anatomically correct fingers. Slow controlled motion, realistic skin texture, consistent warm studio lighting. No skin transformation, no glow enhancement, no before/after. The tube is outside the frame. Staged cosmetic-use illustration, not an efficacy test. No cuts, no captions, no new logos, no music, no speech."
+    },
+    {
+      "type": "image_url",
+      "image_url": {
+        "url": "https://cdn.shopify.com/s/files/1/0156/3905/2336/files/00_6d878aff-381d-4cd6-b9e1-d8b924225025.jpg?v=1766713832"
+      },
+      "role": "reference_image"
+    }
+  ],
+  "resolution": "720p",
+  "duration": 4,
+  "ratio": "9:16",
+  "generate_audio": false
+}
