@@ -33,3 +33,14 @@ def test_known_hard_cut_and_original_timeline(tmp_path):
     prepare_frames(video, [0.5, 1.5])
     assert frame(video, 0.5)[0, 0, 2] > 200
     assert frame(video, 1.5)[0, 0, 0] > 200
+
+    from scripts.phase2_shot_selection import predict_many
+
+    configs = [
+        {"backend": "content", "threshold": 27, "min_scene_len": 6},
+        {"backend": "adaptive", "threshold": 3, "min_scene_len": 3, "min_content_val": 10},
+    ]
+    cached_predictions = predict_many(video, configs)
+    for config, cached in zip(configs, cached_predictions):
+        direct = shots(video, **config)
+        assert cached == [s["start_frame"] for s in direct["items"][1:]]

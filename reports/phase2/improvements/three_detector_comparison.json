@@ -1,0 +1,46 @@
+{
+  "plan": {
+    "ids": [
+      "V034",
+      "V038",
+      "V039",
+      "V040",
+      "V051",
+      "V055",
+      "V056",
+      "V064",
+      "V068",
+      "V069"
+    ],
+    "selection": "first sorted test IDs, fixed before predictions",
+    "tolerance_frames": 2,
+    "backends": [
+      "content",
+      "adaptive",
+      "transnet"
+    ]
+  },
+  "aggregate": {
+    "content": {
+      "matched": 132,
+      "predicted": 134,
+      "reference": 198,
+      "micro_f1": 0.7951807228915663,
+      "macro_video_f1": 0.8571627635074975
+    },
+    "adaptive": {
+      "matched": 152,
+      "predicted": 160,
+      "reference": 198,
+      "micro_f1": 0.8491620111731844,
+      "macro_video_f1": 0.7638340030872466
+    },
+    "transnet": {
+      "matched": 103,
+      "predicted": 104,
+      "reference": 198,
+      "micro_f1": 0.6821192052980133,
+      "macro_video_f1": 0.7778628660766632
+    }
+  }
+}

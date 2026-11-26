@@ -1,0 +1,38 @@
+{
+  "python": "3.12.14",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "models": {
+    "shot_size_probe.npz": "f7e72829b6d8dc3625e1ead4575ee719e2d2656aa81887e9be13b290dc5e9570",
+    "transition_four_class.pt": "6557a7827a5185600d8a0186c81efc638c1edc489cfb10bb5415af5e671b17a4"
+  },
+  "packages": {
+    "torch": "not installed in report environment; see inference manifest",
+    "transformers": "not installed in report environment; see inference manifest",
+    "scenedetect": "not installed in report environment; see inference manifest",
+    "scikit-learn": "not installed in report environment; see inference manifest",
+    "easyocr": "not installed in report environment; see inference manifest",
+    "faster-whisper": "not installed in report environment; see inference manifest",
+    "librosa": "not installed in report environment; see inference manifest",
+    "beat-this": "not installed in report environment; see inference manifest",
+    "av": "not installed in report environment; see inference manifest"
+  },
+  "inference_environment": {
+    "python": "3.13.5",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "processor": "Intel64 Family 6 Model 165 Stepping 2, GenuineIntel",
+    "logical_cpus": 8,
+    "device": "CPU",
+    "packages": {
+      "torch": "2.15.0",
+      "transformers": "4.57.6",
+      "scenedetect": "0.6.7.1",
+      "scikit-learn": "1.9.1",
+      "easyocr": "1.7.2",
+      "faster-whisper": "1.2.1",
+      "librosa": "1.0.1",
+      "beat-this": "1.1.0",
+      "av": "19.0.2",
+      "numpy": "2.5.5"
+    }
+  }
+}

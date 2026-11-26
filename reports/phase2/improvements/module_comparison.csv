@@ -1,0 +1,14 @@
+module,variant,n,scope,metric,value,macro_f1
+shots,content-default,30,30 previously uninspected test videos,boundary micro F1 +/-2 frames,0.84,
+shots,adaptive-default,30,30 previously uninspected test videos,boundary micro F1 +/-2 frames,0.8691099476439791,
+shots,adaptive-validation-selected,30,30 previously uninspected test videos,boundary micro F1 +/-2 frames,0.8581644815256257,
+transitions,transition_four_class_majority,620,40 test videos; supplied shot boundaries,accuracy,0.8548387096774194,0.23043478260869565
+transitions,transition_four_class,620,40 test videos; supplied shot boundaries,accuracy,0.8709677419354839,0.5174580411071709
+transitions,transition_binary_old,620,40 test videos; supplied shot boundaries,accuracy,0.9564516129032258,0.4888705688375927
+transitions,transition_binary_new,620,40 test videos; supplied shot boundaries,accuracy,0.9419354838709677,0.535
+shot_size,shot_size_zero_shot,629,40 test videos; supplied shot boundaries,accuracy,0.32591414944356123,0.1720930869225013
+shot_size,shot_size_old,629,40 test videos; supplied shot boundaries,accuracy,0.17011128775834658,0.07839104033457997
+shot_size,shot_size_new,629,40 test videos; supplied shot boundaries,accuracy,0.5977742448330684,0.30082745016106854
+transitions,transition_binary_rules,620,40 test videos; supplied shot boundaries,accuracy,0.8016129032258065,0.5908249496981891
+shot_size,size_cv_zero_shot,3260,supplementary video-separated five-fold development CV on inspected data,accuracy,0.3638036809815951,0.19435904583506217
+shot_size,size_cv_probe_oof,3260,supplementary video-separated five-fold development CV on inspected data,accuracy,0.6162576687116564,0.3075246094950443

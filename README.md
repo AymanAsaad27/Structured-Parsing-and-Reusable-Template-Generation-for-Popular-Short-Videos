@@ -2,9 +2,9 @@
 
 Structured parsing and reusable editing templates for 15–60 second vertical beauty videos.
 
-**Status: Phase 2 implementation and pilot study, plus one Phase 3/4 prototype.** Six local parsing adapters, timestamp handling, output validation, and evaluation utilities are implemented. A manually adapted template has produced one 20-second Medicube demonstration using Seedance clips and FFmpeg rendering. Automatic semantic template extraction and clustering remain planned. See [Phase 2 usage](docs/phase2_usage.md) and [first generation example](docs/phase34_demo.md).
+**Status: Phase 2 implemented with expanded experiments; three module accuracy evaluations remain open.** Training now uses the 200-video collection with a frozen 140/20/40 split. Reviewed beat timestamps, OCR boxes/text and speech transcripts still need to be located for their evaluation. A manually adapted template has also produced one 20-second Medicube demonstration; automatic semantic extraction and clustering remain planned. See [Phase 2 usage](docs/phase2_usage.md), [expanded results](reports/phase2/improvements/RESULTS.md) and [first generation example](docs/phase34_demo.md).
 
-The first 30-video pilot measures boundary F1 of **0.779** for content detection and **0.871** for adaptive detection, using one-to-one matching within ±2 verified source frames. These are agreement scores against the supplied annotations, not independently verified benchmark accuracy. See the [measured report](reports/phase2/Phase_2_Report.html) and [comparison table](reports/phase2/module_comparison.csv).
+On 30 new shot-test videos, content/adaptive boundary F1 is **0.840 / 0.869**, within ±2 source frames; adaptive is now the default. On 629 reference-conditioned test shots, CLIP zero-shot/probe accuracy is **32.6% / 59.8%**. The four-class transition CNN scores **87.1% accuracy**, but dissolve recall is only **3.8%**. Supplementary grouped size CV confirms poor medium/wide recall, so Phase 2 is not signed off. Full supports, confusion matrices and limits are in the [new comparison](reports/phase2/improvements/module_comparison.csv). The [original pilot report](reports/phase2/Phase_2_Report.html) is retained separately.
 
 ## Quick start
 

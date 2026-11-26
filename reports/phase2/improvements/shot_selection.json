@@ -1,0 +1,1289 @@
+{
+  "plan": {
+    "validation": [
+      "V031",
+      "V033",
+      "V035",
+      "V043",
+      "V059",
+      "V063",
+      "V077",
+      "V082",
+      "V099",
+      "V110",
+      "V112",
+      "V114",
+      "V119",
+      "V122",
+      "V132",
+      "V146",
+      "V151",
+      "V162",
+      "V181",
+      "V195"
+    ],
+    "test": [
+      "V081",
+      "V083",
+      "V085",
+      "V087",
+      "V093",
+      "V097",
+      "V098",
+      "V101",
+      "V106",
+      "V113",
+      "V116",
+      "V121",
+      "V125",
+      "V131",
+      "V135",
+      "V139",
+      "V143",
+      "V152",
+      "V157",
+      "V159",
+      "V163",
+      "V169",
+      "V179",
+      "V182",
+      "V184",
+      "V186",
+      "V193",
+      "V196",
+      "V197",
+      "V198"
+    ],
+    "excluded_previously_inspected_shot_test": [
+      "V034",
+      "V038",
+      "V039",
+      "V040",
+      "V051",
+      "V055",
+      "V056",
+      "V064",
+      "V068",
+      "V069"
+    ],
+    "configs": [
+      {
+        "backend": "content",
+        "threshold": 18,
+        "min_scene_len": 1
+      },
+      {
+        "backend": "content",
+        "threshold": 18,
+        "min_scene_len": 3
+      },
+      {
+        "backend": "content",
+        "threshold": 18,
+        "min_scene_len": 6
+      },
+      {
+        "backend": "content",
+        "threshold": 22,
+        "min_scene_len": 1
+      },
+      {
+        "backend": "content",
+        "threshold": 22,
+        "min_scene_len": 3
+      },
+      {
+        "backend": "content",
+        "threshold": 22,
+        "min_scene_len": 6
+      },
+      {
+        "backend": "content",
+        "threshold": 27,
+        "min_scene_len": 1
+      },
+      {
+        "backend": "content",
+        "threshold": 27,
+        "min_scene_len": 3
+      },
+      {
+        "backend": "content",
+        "threshold": 27,
+        "min_scene_len": 6
+      },
+      {
+        "backend": "adaptive",
+        "threshold": 1.5,
+        "min_scene_len": 1,
+        "min_content_val": 10
+      },
+      {
+        "backend": "adaptive",
+        "threshold": 1.5,
+        "min_scene_len": 1,
+        "min_content_val": 15
+      },
+      {
+        "backend": "adaptive",
+        "threshold": 1.5,
+        "min_scene_len": 3,
+        "min_content_val": 10
+      },
+      {
+        "backend": "adaptive",
+        "threshold": 1.5,
+        "min_scene_len": 3,
+        "min_content_val": 15
+      },
+      {
+        "backend": "adaptive",
+        "threshold": 1.5,
+        "min_scene_len": 6,
+        "min_content_val": 10
+      },
+      {
+        "backend": "adaptive",
+        "threshold": 1.5,
+        "min_scene_len": 6,
+        "min_content_val": 15
+      },
+      {
+        "backend": "adaptive",
+        "threshold": 2,
+        "min_scene_len": 1,
+        "min_content_val": 10
+      },
+      {
+        "backend": "adaptive",
+        "threshold": 2,
+        "min_scene_len": 1,
+        "min_content_val": 15
+      },
+      {
+        "backend": "adaptive",
+        "threshold": 2,
+        "min_scene_len": 3,
+        "min_content_val": 10
+      },
+      {
+        "backend": "adaptive",
+        "threshold": 2,
+        "min_scene_len": 3,
+        "min_content_val": 15
+      },
+      {
+        "backend": "adaptive",
+        "threshold": 2,
+        "min_scene_len": 6,
+        "min_content_val": 10
+      },
+      {
+        "backend": "adaptive",
+        "threshold": 2,
+        "min_scene_len": 6,
+        "min_content_val": 15
+      },
+      {
+        "backend": "adaptive",
+        "threshold": 3,
+        "min_scene_len": 1,
+        "min_content_val": 10
+      },
+      {
+        "backend": "adaptive",
+        "threshold": 3,
+        "min_scene_len": 1,
+        "min_content_val": 15
+      },
+      {
+        "backend": "adaptive",
+        "threshold": 3,
+        "min_scene_len": 3,
+        "min_content_val": 10
+      },
+      {
+        "backend": "adaptive",
+        "threshold": 3,
+        "min_scene_len": 3,
+        "min_content_val": 15
+      },
+      {
+        "backend": "adaptive",
+        "threshold": 3,
+        "min_scene_len": 6,
+        "min_content_val": 10
+      },
+      {
+        "backend": "adaptive",
+        "threshold": 3,
+        "min_scene_len": 6,
+        "min_content_val": 15
+      }
+    ],
+    "selection": "validation micro F1, first declared config breaks ties",
+    "tolerance_frames": 2
+  },
+  "selection": {
+    "config": {
+      "backend": "adaptive",
+      "threshold": 2,
+      "min_scene_len": 6,
+      "min_content_val": 15
+    },
+    "validation": {
+      "matched": 309,
+      "predicted": 322,
+      "reference": 375,
+      "micro_f1": 0.8866571018651362,
+      "macro_video_f1": 0.8687796332481174
+    }
+  },
+  "validation_candidates": [
+    {
+      "matched": 336,
+      "predicted": 612,
+      "reference": 375,
+      "micro_f1": 0.6808510638297872,
+      "macro_video_f1": 0.7307655399863575
+    },
+    {
+      "matched": 331,
+      "predicted": 413,
+      "reference": 375,
+      "micro_f1": 0.8401015228426396,
+      "macro_video_f1": 0.8540951663629853
+    },
+    {
+      "matched": 317,
+      "predicted": 378,
+      "reference": 375,
+      "micro_f1": 0.8419654714475432,
+      "macro_video_f1": 0.8525462834204267
+    },
+    {
+      "matched": 300,
+      "predicted": 384,
+      "reference": 375,
+      "micro_f1": 0.7905138339920948,
+      "macro_video_f1": 0.7858876986034338
+    },
+    {
+      "matched": 297,
+      "predicted": 319,
+      "reference": 375,
+      "micro_f1": 0.8559077809798271,
+      "macro_video_f1": 0.8570080521115567
+    },
+    {
+      "matched": 289,
+      "predicted": 302,
+      "reference": 375,
+      "micro_f1": 0.8537666174298375,
+      "macro_video_f1": 0.8522476515236322
+    },
+    {
+      "matched": 257,
+      "predicted": 294,
+      "reference": 375,
+      "micro_f1": 0.7683109118086696,
+      "macro_video_f1": 0.748101127211197
+    },
+    {
+      "matched": 255,
+      "predicted": 260,
+      "reference": 375,
+      "micro_f1": 0.8031496062992126,
+      "macro_video_f1": 0.7894981196820503
+    },
+    {
+      "matched": 250,
+      "predicted": 253,
+      "reference": 375,
+      "micro_f1": 0.7961783439490446,
+      "macro_video_f1": 0.7825496137500119
+    },
+    {
+      "matched": 347,
+      "predicted": 591,
+      "reference": 375,
+      "micro_f1": 0.7184265010351967,
+      "macro_video_f1": 0.7586291787354258
+    },
+    {
+      "matched": 337,
+      "predicted": 435,
+      "reference": 375,
+      "micro_f1": 0.8320987654320988,
+      "macro_video_f1": 0.8488508764470456
+    },
+    {
+      "matched": 347,
+      "predicted": 591,
+      "reference": 375,
+      "micro_f1": 0.7184265010351967,
+      "macro_video_f1": 0.7586291787354258
+    },
+    {
+      "matched": 337,
+      "predicted": 435,
+      "reference": 375,
+      "micro_f1": 0.8320987654320988,
+      "macro_video_f1": 0.8488508764470456
+    },
+    {
+      "matched": 340,
+      "predicted": 515,
+      "reference": 375,
+      "micro_f1": 0.7640449438202247,
+      "macro_video_f1": 0.7911800145165016
+    },
+    {
+      "matched": 334,
+      "predicted": 395,
+      "reference": 375,
+      "micro_f1": 0.8675324675324675,
+      "macro_video_f1": 0.8780200796335793
+    },
+    {
+      "matched": 318,
+      "predicted": 374,
+      "reference": 375,
+      "micro_f1": 0.8491321762349799,
+      "macro_video_f1": 0.8338299290850456
+    },
+    {
+      "matched": 310,
+      "predicted": 339,
+      "reference": 375,
+      "micro_f1": 0.8683473389355743,
+      "macro_video_f1": 0.8506577341331228
+    },
+    {
+      "matched": 318,
+      "predicted": 374,
+      "reference": 375,
+      "micro_f1": 0.8491321762349799,
+      "macro_video_f1": 0.8338299290850456
+    },
+    {
+      "matched": 310,
+      "predicted": 339,
+      "reference": 375,
+      "micro_f1": 0.8683473389355743,
+      "macro_video_f1": 0.8506577341331228
+    },
+    {
+      "matched": 317,
+      "predicted": 356,
+      "reference": 375,
+      "micro_f1": 0.8673050615595075,
+      "macro_video_f1": 0.8509938831891404
+    },
+    {
+      "matched": 309,
+      "predicted": 322,
+      "reference": 375,
+      "micro_f1": 0.8866571018651362,
+      "macro_video_f1": 0.8687796332481174
+    },
+    {
+      "matched": 280,
+      "predicted": 287,
+      "reference": 375,
+      "micro_f1": 0.8459214501510574,
+      "macro_video_f1": 0.7934825625579133
+    },
+    {
+      "matched": 275,
+      "predicted": 278,
+      "reference": 375,
+      "micro_f1": 0.8422664624808576,
+      "macro_video_f1": 0.7930640061652884
+    },
+    {
+      "matched": 280,
+      "predicted": 287,
+      "reference": 375,
+      "micro_f1": 0.8459214501510574,
+      "macro_video_f1": 0.7934825625579133
+    },
+    {
+      "matched": 275,
+      "predicted": 278,
+      "reference": 375,
+      "micro_f1": 0.8422664624808576,
+      "macro_video_f1": 0.7930640061652884
+    },
+    {
+      "matched": 280,
+      "predicted": 286,
+      "reference": 375,
+      "micro_f1": 0.8472012102874432,
+      "macro_video_f1": 0.7940378243241745
+    },
+    {
+      "matched": 275,
+      "predicted": 277,
+      "reference": 375,
+      "micro_f1": 0.843558282208589,
+      "macro_video_f1": 0.7936192679315497
+    }
+  ],
+  "test": [
+    {
+      "config": {
+        "backend": "content",
+        "threshold": 27,
+        "min_scene_len": 6
+      },
+      "matched": 315,
+      "predicted": 328,
+      "reference": 422,
+      "micro_f1": 0.84,
+      "macro_video_f1": 0.8125047683861515,
+      "per_video": [
+        {
+          "video_id": "V081",
+          "precision": 0.9672131147540983,
+          "recall": 0.8428571428571429,
+          "f1": 0.9007633587786259,
+          "matched": 59,
+          "predicted": 61,
+          "reference": 70
+        },
+        {
+          "video_id": "V083",
+          "precision": 1.0,
+          "recall": 0.6,
+          "f1": 0.7499999999999999,
+          "matched": 3,
+          "predicted": 3,
+          "reference": 5
+        },
+        {
+          "video_id": "V085",
+          "precision": 1.0,
+          "recall": 0.5,
+          "f1": 0.6666666666666666,
+          "matched": 4,
+          "predicted": 4,
+          "reference": 8
+        },
+        {
+          "video_id": "V087",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "matched": 23,
+          "predicted": 23,
+          "reference": 23
+        },
+        {
+          "video_id": "V093",
+          "precision": 1.0,
+          "recall": 0.75,
+          "f1": 0.8571428571428571,
+          "matched": 3,
+          "predicted": 3,
+          "reference": 4
+        },
+        {
+          "video_id": "V097",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "matched": 3,
+          "predicted": 3,
+          "reference": 3
+        },
+        {
+          "video_id": "V098",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "matched": 6,
+          "predicted": 6,
+          "reference": 6
+        },
+        {
+          "video_id": "V101",
+          "precision": 1.0,
+          "recall": 0.9,
+          "f1": 0.9473684210526316,
+          "matched": 9,
+          "predicted": 9,
+          "reference": 10
+        },
+        {
+          "video_id": "V106",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "matched": 7,
+          "predicted": 7,
+          "reference": 7
+        },
+        {
+          "video_id": "V113",
+          "precision": 0.9090909090909091,
+          "recall": 0.7142857142857143,
+          "f1": 0.8,
+          "matched": 10,
+          "predicted": 11,
+          "reference": 14
+        },
+        {
+          "video_id": "V116",
+          "precision": 1.0,
+          "recall": 0.95,
+          "f1": 0.9743589743589743,
+          "matched": 19,
+          "predicted": 19,
+          "reference": 20
+        },
+        {
+          "video_id": "V121",
+          "precision": 1.0,
+          "recall": 0.5,
+          "f1": 0.6666666666666666,
+          "matched": 7,
+          "predicted": 7,
+          "reference": 14
+        },
+        {
+          "video_id": "V125",
+          "precision": 1.0,
+          "recall": 0.8823529411764706,
+          "f1": 0.9375,
+          "matched": 15,
+          "predicted": 15,
+          "reference": 17
+        },
+        {
+          "video_id": "V131",
+          "precision": 1.0,
+          "recall": 0.5,
+          "f1": 0.6666666666666666,
+          "matched": 1,
+          "predicted": 1,
+          "reference": 2
+        },
+        {
+          "video_id": "V135",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "matched": 0,
+          "predicted": 0,
+          "reference": 0
+        },
+        {
+          "video_id": "V139",
+          "precision": 1.0,
+          "recall": 0.5454545454545454,
+          "f1": 0.7058823529411764,
+          "matched": 6,
+          "predicted": 6,
+          "reference": 11
+        },
+        {
+          "video_id": "V143",
+          "precision": 0.5555555555555556,
+          "recall": 0.8333333333333334,
+          "f1": 0.6666666666666667,
+          "matched": 5,
+          "predicted": 9,
+          "reference": 6
+        },
+        {
+          "video_id": "V152",
+          "precision": 1.0,
+          "recall": 0.5714285714285714,
+          "f1": 0.7272727272727273,
+          "matched": 4,
+          "predicted": 4,
+          "reference": 7
+        },
+        {
+          "video_id": "V157",
+          "precision": 1.0,
+          "recall": 0.8695652173913043,
+          "f1": 0.9302325581395349,
+          "matched": 20,
+          "predicted": 20,
+          "reference": 23
+        },
+        {
+          "video_id": "V159",
+          "precision": 1.0,
+          "recall": 0.5454545454545454,
+          "f1": 0.7058823529411764,
+          "matched": 12,
+          "predicted": 12,
+          "reference": 22
+        },
+        {
+          "video_id": "V163",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "matched": 0,
+          "predicted": 0,
+          "reference": 0
+        },
+        {
+          "video_id": "V169",
+          "precision": 1.0,
+          "recall": 0.7777777777777778,
+          "f1": 0.8750000000000001,
+          "matched": 21,
+          "predicted": 21,
+          "reference": 27
+        },
+        {
+          "video_id": "V179",
+          "precision": 1.0,
+          "recall": 0.75,
+          "f1": 0.8571428571428571,
+          "matched": 15,
+          "predicted": 15,
+          "reference": 20
+        },
+        {
+          "video_id": "V182",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "matched": 1,
+          "predicted": 1,
+          "reference": 1
+        },
+        {
+          "video_id": "V184",
+          "precision": 0.5555555555555556,
+          "recall": 0.2631578947368421,
+          "f1": 0.35714285714285715,
+          "matched": 5,
+          "predicted": 9,
+          "reference": 19
+        },
+        {
+          "video_id": "V186",
+          "precision": 0.9047619047619048,
+          "recall": 0.5277777777777778,
+          "f1": 0.6666666666666666,
+          "matched": 19,
+          "predicted": 21,
+          "reference": 36
+        },
+        {
+          "video_id": "V193",
+          "precision": 1.0,
+          "recall": 0.84,
+          "f1": 0.9130434782608696,
+          "matched": 21,
+          "predicted": 21,
+          "reference": 25
+        },
+        {
+          "video_id": "V196",
+          "precision": 1.0,
+          "recall": 0.8571428571428571,
+          "f1": 0.923076923076923,
+          "matched": 6,
+          "predicted": 6,
+          "reference": 7
+        },
+        {
+          "video_id": "V197",
+          "precision": 1.0,
+          "recall": 0.7857142857142857,
+          "f1": 0.88,
+          "matched": 11,
+          "predicted": 11,
+          "reference": 14
+        },
+        {
+          "video_id": "V198",
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0,
+          "matched": 0,
+          "predicted": 0,
+          "reference": 1
+        }
+      ]
+    },
+    {
+      "config": {
+        "backend": "adaptive",
+        "threshold": 3,
+        "min_scene_len": 6,
+        "min_content_val": 15
+      },
+      "matched": 332,
+      "predicted": 342,
+      "reference": 422,
+      "micro_f1": 0.8691099476439791,
+      "macro_video_f1": 0.8619517406299485,
+      "per_video": [
+        {
+          "video_id": "V081",
+          "precision": 0.984375,
+          "recall": 0.9,
+          "f1": 0.9402985074626866,
+          "matched": 63,
+          "predicted": 64,
+          "reference": 70
+        },
+        {
+          "video_id": "V083",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "matched": 5,
+          "predicted": 5,
+          "reference": 5
+        },
+        {
+          "video_id": "V085",
+          "precision": 1.0,
+          "recall": 0.875,
+          "f1": 0.9333333333333333,
+          "matched": 7,
+          "predicted": 7,
+          "reference": 8
+        },
+        {
+          "video_id": "V087",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "matched": 23,
+          "predicted": 23,
+          "reference": 23
+        },
+        {
+          "video_id": "V093",
+          "precision": 1.0,
+          "recall": 0.75,
+          "f1": 0.8571428571428571,
+          "matched": 3,
+          "predicted": 3,
+          "reference": 4
+        },
+        {
+          "video_id": "V097",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "matched": 3,
+          "predicted": 3,
+          "reference": 3
+        },
+        {
+          "video_id": "V098",
+          "precision": 0.8571428571428571,
+          "recall": 1.0,
+          "f1": 0.923076923076923,
+          "matched": 6,
+          "predicted": 7,
+          "reference": 6
+        },
+        {
+          "video_id": "V101",
+          "precision": 1.0,
+          "recall": 0.9,
+          "f1": 0.9473684210526316,
+          "matched": 9,
+          "predicted": 9,
+          "reference": 10
+        },
+        {
+          "video_id": "V106",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "matched": 7,
+          "predicted": 7,
+          "reference": 7
+        },
+        {
+          "video_id": "V113",
+          "precision": 1.0,
+          "recall": 0.7142857142857143,
+          "f1": 0.8333333333333333,
+          "matched": 10,
+          "predicted": 10,
+          "reference": 14
+        },
+        {
+          "video_id": "V116",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "matched": 20,
+          "predicted": 20,
+          "reference": 20
+        },
+        {
+          "video_id": "V121",
+          "precision": 1.0,
+          "recall": 0.8571428571428571,
+          "f1": 0.923076923076923,
+          "matched": 12,
+          "predicted": 12,
+          "reference": 14
+        },
+        {
+          "video_id": "V125",
+          "precision": 1.0,
+          "recall": 0.9411764705882353,
+          "f1": 0.9696969696969697,
+          "matched": 16,
+          "predicted": 16,
+          "reference": 17
+        },
+        {
+          "video_id": "V131",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "matched": 2,
+          "predicted": 2,
+          "reference": 2
+        },
+        {
+          "video_id": "V135",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "matched": 0,
+          "predicted": 0,
+          "reference": 0
+        },
+        {
+          "video_id": "V139",
+          "precision": 1.0,
+          "recall": 0.5454545454545454,
+          "f1": 0.7058823529411764,
+          "matched": 6,
+          "predicted": 6,
+          "reference": 11
+        },
+        {
+          "video_id": "V143",
+          "precision": 0.8571428571428571,
+          "recall": 1.0,
+          "f1": 0.923076923076923,
+          "matched": 6,
+          "predicted": 7,
+          "reference": 6
+        },
+        {
+          "video_id": "V152",
+          "precision": 1.0,
+          "recall": 0.8571428571428571,
+          "f1": 0.923076923076923,
+          "matched": 6,
+          "predicted": 6,
+          "reference": 7
+        },
+        {
+          "video_id": "V157",
+          "precision": 1.0,
+          "recall": 0.782608695652174,
+          "f1": 0.878048780487805,
+          "matched": 18,
+          "predicted": 18,
+          "reference": 23
+        },
+        {
+          "video_id": "V159",
+          "precision": 0.9285714285714286,
+          "recall": 0.5909090909090909,
+          "f1": 0.7222222222222223,
+          "matched": 13,
+          "predicted": 14,
+          "reference": 22
+        },
+        {
+          "video_id": "V163",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "matched": 0,
+          "predicted": 0,
+          "reference": 0
+        },
+        {
+          "video_id": "V169",
+          "precision": 0.9523809523809523,
+          "recall": 0.7407407407407407,
+          "f1": 0.8333333333333334,
+          "matched": 20,
+          "predicted": 21,
+          "reference": 27
+        },
+        {
+          "video_id": "V179",
+          "precision": 1.0,
+          "recall": 0.75,
+          "f1": 0.8571428571428571,
+          "matched": 15,
+          "predicted": 15,
+          "reference": 20
+        },
+        {
+          "video_id": "V182",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "matched": 1,
+          "predicted": 1,
+          "reference": 1
+        },
+        {
+          "video_id": "V184",
+          "precision": 1.0,
+          "recall": 0.15789473684210525,
+          "f1": 0.2727272727272727,
+          "matched": 3,
+          "predicted": 3,
+          "reference": 19
+        },
+        {
+          "video_id": "V186",
+          "precision": 0.75,
+          "recall": 0.4166666666666667,
+          "f1": 0.5357142857142857,
+          "matched": 15,
+          "predicted": 20,
+          "reference": 36
+        },
+        {
+          "video_id": "V193",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "matched": 25,
+          "predicted": 25,
+          "reference": 25
+        },
+        {
+          "video_id": "V196",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "matched": 7,
+          "predicted": 7,
+          "reference": 7
+        },
+        {
+          "video_id": "V197",
+          "precision": 1.0,
+          "recall": 0.7857142857142857,
+          "f1": 0.88,
+          "matched": 11,
+          "predicted": 11,
+          "reference": 14
+        },
+        {
+          "video_id": "V198",
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0,
+          "matched": 0,
+          "predicted": 0,
+          "reference": 1
+        }
+      ]
+    },
+    {
+      "config": {
+        "backend": "adaptive",
+        "threshold": 2,
+        "min_scene_len": 6,
+        "min_content_val": 15
+      },
+      "matched": 360,
+      "predicted": 417,
+      "reference": 422,
+      "micro_f1": 0.8581644815256257,
+      "macro_video_f1": 0.8554331624867716,
+      "per_video": [
+        {
+          "video_id": "V081",
+          "precision": 0.9855072463768116,
+          "recall": 0.9714285714285714,
+          "f1": 0.9784172661870504,
+          "matched": 68,
+          "predicted": 69,
+          "reference": 70
+        },
+        {
+          "video_id": "V083",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "matched": 5,
+          "predicted": 5,
+          "reference": 5
+        },
+        {
+          "video_id": "V085",
+          "precision": 1.0,
+          "recall": 0.875,
+          "f1": 0.9333333333333333,
+          "matched": 7,
+          "predicted": 7,
+          "reference": 8
+        },
+        {
+          "video_id": "V087",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "matched": 23,
+          "predicted": 23,
+          "reference": 23
+        },
+        {
+          "video_id": "V093",
+          "precision": 1.0,
+          "recall": 0.75,
+          "f1": 0.8571428571428571,
+          "matched": 3,
+          "predicted": 3,
+          "reference": 4
+        },
+        {
+          "video_id": "V097",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "matched": 3,
+          "predicted": 3,
+          "reference": 3
+        },
+        {
+          "video_id": "V098",
+          "precision": 0.8571428571428571,
+          "recall": 1.0,
+          "f1": 0.923076923076923,
+          "matched": 6,
+          "predicted": 7,
+          "reference": 6
+        },
+        {
+          "video_id": "V101",
+          "precision": 1.0,
+          "recall": 0.9,
+          "f1": 0.9473684210526316,
+          "matched": 9,
+          "predicted": 9,
+          "reference": 10
+        },
+        {
+          "video_id": "V106",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "matched": 7,
+          "predicted": 7,
+          "reference": 7
+        },
+        {
+          "video_id": "V113",
+          "precision": 0.9166666666666666,
+          "recall": 0.7857142857142857,
+          "f1": 0.8461538461538461,
+          "matched": 11,
+          "predicted": 12,
+          "reference": 14
+        },
+        {
+          "video_id": "V116",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "matched": 20,
+          "predicted": 20,
+          "reference": 20
+        },
+        {
+          "video_id": "V121",
+          "precision": 1.0,
+          "recall": 0.9285714285714286,
+          "f1": 0.962962962962963,
+          "matched": 13,
+          "predicted": 13,
+          "reference": 14
+        },
+        {
+          "video_id": "V125",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "matched": 17,
+          "predicted": 17,
+          "reference": 17
+        },
+        {
+          "video_id": "V131",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "matched": 2,
+          "predicted": 2,
+          "reference": 2
+        },
+        {
+          "video_id": "V135",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "matched": 0,
+          "predicted": 0,
+          "reference": 0
+        },
+        {
+          "video_id": "V139",
+          "precision": 0.5333333333333333,
+          "recall": 0.7272727272727273,
+          "f1": 0.6153846153846153,
+          "matched": 8,
+          "predicted": 15,
+          "reference": 11
+        },
+        {
+          "video_id": "V143",
+          "precision": 0.3333333333333333,
+          "recall": 1.0,
+          "f1": 0.5,
+          "matched": 6,
+          "predicted": 18,
+          "reference": 6
+        },
+        {
+          "video_id": "V152",
+          "precision": 1.0,
+          "recall": 0.8571428571428571,
+          "f1": 0.923076923076923,
+          "matched": 6,
+          "predicted": 6,
+          "reference": 7
+        },
+        {
+          "video_id": "V157",
+          "precision": 0.9545454545454546,
+          "recall": 0.9130434782608695,
+          "f1": 0.9333333333333332,
+          "matched": 21,
+          "predicted": 22,
+          "reference": 23
+        },
+        {
+          "video_id": "V159",
+          "precision": 0.9411764705882353,
+          "recall": 0.7272727272727273,
+          "f1": 0.8205128205128205,
+          "matched": 16,
+          "predicted": 17,
+          "reference": 22
+        },
+        {
+          "video_id": "V163",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "matched": 0,
+          "predicted": 0,
+          "reference": 0
+        },
+        {
+          "video_id": "V169",
+          "precision": 0.9523809523809523,
+          "recall": 0.7407407407407407,
+          "f1": 0.8333333333333334,
+          "matched": 20,
+          "predicted": 21,
+          "reference": 27
+        },
+        {
+          "video_id": "V179",
+          "precision": 1.0,
+          "recall": 0.8,
+          "f1": 0.888888888888889,
+          "matched": 16,
+          "predicted": 16,
+          "reference": 20
+        },
+        {
+          "video_id": "V182",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "matched": 1,
+          "predicted": 1,
+          "reference": 1
+        },
+        {
+          "video_id": "V184",
+          "precision": 0.75,
+          "recall": 0.15789473684210525,
+          "f1": 0.2608695652173913,
+          "matched": 3,
+          "predicted": 4,
+          "reference": 19
+        },
+        {
+          "video_id": "V186",
+          "precision": 0.45614035087719296,
+          "recall": 0.7222222222222222,
+          "f1": 0.5591397849462365,
+          "matched": 26,
+          "predicted": 57,
+          "reference": 36
+        },
+        {
+          "video_id": "V193",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "matched": 25,
+          "predicted": 25,
+          "reference": 25
+        },
+        {
+          "video_id": "V196",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "matched": 7,
+          "predicted": 7,
+          "reference": 7
+        },
+        {
+          "video_id": "V197",
+          "precision": 1.0,
+          "recall": 0.7857142857142857,
+          "f1": 0.88,
+          "matched": 11,
+          "predicted": 11,
+          "reference": 14
+        },
+        {
+          "video_id": "V198",
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0,
+          "matched": 0,
+          "predicted": 0,
+          "reference": 1
+        }
+      ]
+    }
+  ]
+}

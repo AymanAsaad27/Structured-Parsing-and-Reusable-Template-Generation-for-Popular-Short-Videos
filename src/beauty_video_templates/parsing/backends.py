@@ -5,7 +5,7 @@ import numpy as np
 from .media import audio, envelope, frame, metadata, presentation_times
 
 
-def shots(path, backend="content", threshold=None, min_scene_len=6):
+def shots(path, backend="adaptive", threshold=None, min_scene_len=6, min_content_val=15):
     if backend == "transnet":
         from .transnet import parse
 
@@ -18,7 +18,11 @@ def shots(path, backend="content", threshold=None, min_scene_len=6):
     detector = (
         ContentDetector(threshold=threshold, min_scene_len=min_scene_len)
         if backend == "content"
-        else AdaptiveDetector(adaptive_threshold=threshold, min_scene_len=min_scene_len)
+        else AdaptiveDetector(
+            adaptive_threshold=threshold,
+            min_scene_len=min_scene_len,
+            min_content_val=min_content_val,
+        )
     )
     video, fps, count = metadata(path)
     scenes = detect(str(path), detector, show_progress=False)
@@ -43,6 +47,7 @@ def shots(path, backend="content", threshold=None, min_scene_len=6):
         {
             "threshold": threshold,
             "min_scene_len_frames": min_scene_len,
+            "min_content_val": min_content_val if backend == "adaptive" else None,
             "fps": fps,
             "timing": "decoded presentation timestamps",
         },
@@ -50,7 +55,7 @@ def shots(path, backend="content", threshold=None, min_scene_len=6):
     )
 
 
-def beats(path, backend="raw"):
+def beats(path, backend="raw", checkpoint="small0"):
     import librosa
 
     samples, rate = audio(path)
@@ -65,10 +70,10 @@ def beats(path, backend="raw"):
         from beat_this.inference import Audio2Beats
 
         torch.set_num_threads(2)
-        tracker = Audio2Beats(checkpoint_path="small0", device="cpu", dbn=False)
+        tracker = Audio2Beats(checkpoint_path=checkpoint, device="cpu", dbn=False)
         points, downbeats = tracker(torch.tensor(samples, dtype=torch.float32), rate)
         duration = metadata(path)[0]["duration_seconds"]
-        params.update(checkpoint="small0", downbeat_times=[float(t) for t in downbeats])
+        params.update(checkpoint=checkpoint, downbeat_times=[float(t) for t in downbeats])
         return envelope(
             path,
             "beats",
@@ -93,8 +98,11 @@ def beats(path, backend="raw"):
 _readers = {}
 
 
-def ocr(path, languages=("en",), sample_seconds=2.0):
+def ocr(path, languages=("en",), sample_seconds=2.0, enhanced=False):
     import easyocr
+    import torch
+
+    torch.set_num_threads(2)
 
     if sample_seconds <= 0:
         raise ValueError("Sampling interval must be positive")
@@ -104,9 +112,14 @@ def ocr(path, languages=("en",), sample_seconds=2.0):
     duration = metadata(path)[0]["duration_seconds"]
     items = []
     for t in np.arange(0, duration, sample_seconds):
-        image = frame(path, float(t))
+        image = frame(path, float(t), width=1280 if enhanced else 640)
         h, w = image.shape[:2]
-        for polygon, text, confidence in _readers[key].readtext(image):
+        options = (
+            {"decoder": "beamsearch", "beamWidth": 5, "mag_ratio": 1.5, "contrast_ths": 0.2}
+            if enhanced
+            else {}
+        )
+        for polygon, text, confidence in _readers[key].readtext(image, **options):
             xs, ys = zip(*polygon)
             items.append(
                 {
@@ -128,7 +141,14 @@ def ocr(path, languages=("en",), sample_seconds=2.0):
         path,
         "ocr",
         "easyocr",
-        {"languages": list(languages), "sample_seconds": sample_seconds, "device": "cpu"},
+        {
+            "languages": list(languages),
+            "sample_seconds": sample_seconds,
+            "device": "cpu",
+            "enhanced": enhanced,
+            "image_width_limit": 1280 if enhanced else 640,
+            "decoder": "beamsearch" if enhanced else "greedy",
+        },
         items,
     )
 
@@ -136,7 +156,9 @@ def ocr(path, languages=("en",), sample_seconds=2.0):
 _speech = {}
 
 
-def asr(path, model="tiny", beam_size=1):
+def asr(path, model="tiny", beam_size=1, language=None, condition_on_previous_text=True):
+    from pathlib import Path
+
     from faster_whisper import WhisperModel
 
     samples, rate = audio(path, 16000)
@@ -146,14 +168,27 @@ def asr(path, model="tiny", beam_size=1):
         "compute_type": "int8",
         "beam_size": beam_size,
         "vad_filter": True,
+        "requested_language": language,
+        "condition_on_previous_text": condition_on_previous_text,
     }
     if samples is None or np.max(np.abs(samples), initial=0) < 1e-6:
         params["audio_status"] = "missing_or_silent"
         return envelope(path, "asr", "faster-whisper", params, [])
     if model not in _speech:
-        _speech[model] = WhisperModel(model, device="cpu", compute_type="int8", cpu_threads=4)
+        _speech[model] = WhisperModel(
+            model,
+            device="cpu",
+            compute_type="int8",
+            cpu_threads=4,
+            download_root=str(Path("models/weights/faster-whisper")),
+        )
     segments, info = _speech[model].transcribe(
-        samples.astype(np.float32), beam_size=beam_size, vad_filter=True, word_timestamps=True
+        samples.astype(np.float32),
+        beam_size=beam_size,
+        vad_filter=True,
+        word_timestamps=True,
+        language=language,
+        condition_on_previous_text=condition_on_previous_text,
     )
     duration = metadata(path)[0]["duration_seconds"]
     items = []
@@ -167,8 +202,8 @@ def asr(path, model="tiny", beam_size=1):
                     "text": s.text,
                     "words": [
                         {
-                            "start": w.start,
-                            "end": w.end,
+                            "start": max(start, min(end, w.start)),
+                            "end": max(start, min(end, w.end)),
                             "text": w.word,
                             "probability": w.probability,
                         }
@@ -234,6 +269,7 @@ def transitions(path, shot_result=None, checkpoint=None):
         cnn = transition_model(checkpoint)
     for item_index, (t, x) in enumerate(zip(times, features)):
         sharp = x[1] > max(x[0], x[2]) * 1.5 and x[1] > 0.08
+        predicted_label = "hard_cut" if sharp else "non_hard_cut"
         if cnn is not None:
             import cv2
             import torch
@@ -247,12 +283,14 @@ def transitions(path, shot_result=None, checkpoint=None):
             after = cv2.resize(frame(path, t), (32, 32))
             pair = np.concatenate([before, after], axis=2).transpose(2, 0, 1) / 255
             with torch.inference_mode():
-                sharp = int(cnn(torch.tensor(pair[None], dtype=torch.float32)).argmax(1)) == 0
+                predicted_label = cnn.class_labels[
+                    int(cnn(torch.tensor(pair[None], dtype=torch.float32)).argmax(1))
+                ]
         items.append(
             {
                 "start": max(0, t - 1 / fps),
                 "end": min(duration["duration_seconds"], t + 1 / fps),
-                "label": "hard_cut" if sharp else "non_hard_cut",
+                "label": predicted_label,
                 "boundary_time": t,
                 "features": x.tolist(),
             }
@@ -282,7 +320,10 @@ def shot_size(path, shot_result=None, ensemble=False, checkpoint=None):
     from transformers import CLIPModel, CLIPProcessor
 
     if _clip is None:
-        name = "openai/clip-vit-base-patch32"
+        from pathlib import Path
+
+        local = Path("models/weights/clip-b32")
+        name = local if (local / "model.safetensors").is_file() else "openai/clip-vit-base-patch32"
         _clip = (
             CLIPModel.from_pretrained(name, use_safetensors=True).eval(),
             CLIPProcessor.from_pretrained(name),
@@ -299,20 +340,23 @@ def shot_size(path, shot_result=None, ensemble=False, checkpoint=None):
     shot_result = shot_result or shots(path)
     items = []
     torch.set_num_threads(4)
+    probe = None
+    if checkpoint:
+        with np.load(checkpoint) as stored:
+            probe = {key: stored[key] for key in stored.files}
     for s in shot_result["items"]:
         fractions = [0.25, 0.5, 0.75] if ensemble else [0.5]
         images = [
             Image.fromarray(frame(path, s["start"] + (s["end"] - s["start"]) * f)[:, :, ::-1])
             for f in fractions
         ]
-        inputs = processor(text=descriptions, images=images, return_tensors="pt", padding=True)
         with torch.inference_mode():
-            scores = model(**inputs).logits_per_image.softmax(-1).mean(0).tolist()
-            if checkpoint:
-                probe = np.load(checkpoint)
+            if probe is not None:
                 image_inputs = processor(images=images, return_tensors="pt")
                 embedding = model.get_image_features(**image_inputs).numpy()
                 embedding = embedding / np.linalg.norm(embedding, axis=1, keepdims=True)
+                if "mean" in probe and "scale" in probe:
+                    embedding = (embedding - probe["mean"]) / probe["scale"]
                 logits = (embedding @ probe["coef"].T + probe["intercept"]).mean(0)
                 if len(probe["classes"]) == 2 and len(logits) == 1:
                     logits = np.array([0.0, logits[0]])
@@ -321,6 +365,11 @@ def shot_size(path, shot_result=None, ensemble=False, checkpoint=None):
                 scores = [0.0] * len(labels)
                 for label, prob in zip(probe["classes"], probability):
                     scores[int(label)] = float(prob)
+            else:
+                inputs = processor(
+                    text=descriptions, images=images, return_tensors="pt", padding=True
+                )
+                scores = model(**inputs).logits_per_image.softmax(-1).mean(0).tolist()
         items.append(
             {
                 "start": s["start"],
@@ -340,7 +389,7 @@ def shot_size(path, shot_result=None, ensemble=False, checkpoint=None):
             "checkpoint": str(checkpoint) if checkpoint else None,
             "frames_per_shot": 3 if ensemble else 1,
             "prompts": descriptions,
-            "score_note": "relative prompt scores, not calibrated probabilities",
+            "score_note": "relative class scores, not calibrated probabilities",
         },
         items,
     )
