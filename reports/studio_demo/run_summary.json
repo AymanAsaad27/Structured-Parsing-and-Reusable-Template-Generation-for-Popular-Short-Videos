@@ -1,0 +1,28 @@
+{
+  "reference_id": "V005",
+  "analysis": "actual uploaded video; no annotation-table lookup",
+  "reference_shots": 7,
+  "automatic_visual_labels": "CLIP zero-shot estimates plus first/last position priors",
+  "manual_edits": [
+    "first caption changed to A night-routine illustration"
+  ],
+  "export_frames": 538,
+  "export_duration_seconds": 22.416666666666668,
+  "planned_timing_error_seconds": 0.0,
+  "re_detected_boundary_f1": 0.8,
+  "unique_materials": 3,
+  "no_internal_video_loops": true,
+  "new_paid_generations": 0,
+  "generation_material_origin": "four existing Seedance clips; three selected by the automatic matcher",
+  "reference_audio_reused": false,
+  "limits": [
+    "CLIP labels require review",
+    "hard cuts only",
+    "no verified beat alignment",
+    "no visual originality claim",
+    "no clustered 30-template library or full 3x3 Phase 4 set"
+  ],
+  "tests": "41 passed locally; lint/format/package checks passed",
+  "reference_duration_seconds": 22.4,
+  "timing_note": "Reference boundaries are rounded to the nearest 24-fps export frame; zero planned error is measured against that rounded template."
+}

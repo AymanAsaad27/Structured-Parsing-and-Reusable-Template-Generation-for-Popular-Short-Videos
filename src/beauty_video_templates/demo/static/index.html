@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Analyse a short-video reference, edit its reusable structure, and create a new product video."
+    />
+    <title>Beauty Template Studio</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%236d55a4'/%3E%3Ctext x='9' y='29' font-size='28' font-family='Arial' font-weight='bold' fill='white'%3Eb%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="/style.css" />
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Beauty Template Studio home"
+        ><span class="brand-mark">b<span>t</span></span
+        ><span>BEAUTY TEMPLATE <b>STUDIO</b></span></a
+      >
+      <div class="header-right">
+        <span class="local-pill"><i></i> Local research demo</span
+        ><button class="quiet" id="presentation-toggle">
+          Presentation view <span aria-hidden="true">↗</span>
+        </button>
+      </div>
+    </header>
+    <main>
+      <section class="intro">
+        <div>
+          <p class="eyebrow">REFERENCE → STRUCTURE → YOUR STORY</p>
+          <h1>A familiar rhythm.<br /><em>A new product story.</em></h1>
+          <p class="intro-copy">
+            Turn the editing structure of a short video into a template you can
+            make your own.
+          </p>
+        </div>
+        <div class="intro-note">
+          <span class="spark">✦</span>
+          <p>
+            <strong>Built for the next lab demo.</strong><br />Actual timing
+            analysis. Editable visual estimates. New product materials.
+          </p>
+          <button id="method-toggle" class="text-button">
+            How it works <span aria-hidden="true">↓</span>
+          </button>
+        </div>
+      </section>
+      <section id="method" class="method hidden">
+        <strong>What transfers?</strong> Shot lengths, editing pace, estimated
+        shot functions, a colour palette and estimated caption placement. Visual
+        labels use local CLIP estimates plus opening/closing position rules.
+        This prototype renders hard cuts. Beat, OCR and semantic accuracy are
+        still under evaluation; it does not reproduce exact lighting, camera
+        motion or soft transitions.
+      </section>
+      <nav class="steps" aria-label="Workflow">
+        <span class="step active" id="step1"><b>01</b> Reference</span
+        ><span class="step" id="step2"><b>02</b> Reusable template</span
+        ><span class="step" id="step3"><b>03</b> Your new video</span
+        ><span class="step-note"
+          >Keep the structure. Bring your materials.</span
+        >
+      </nav>
+      <div id="notice" class="notice hidden" role="alert"></div>
+      <section id="job-panel" class="job-panel hidden" aria-live="polite">
+        <div>
+          <span class="spinner"></span><strong id="job-message">Working…</strong
+          ><span id="job-percent">0%</span>
+        </div>
+        <progress id="job-progress" max="100" value="0"></progress>
+      </section>
+      <div class="workspace">
+        <aside class="panel reference-panel">
+          <div class="panel-heading">
+            <div>
+              <span class="section-number">01 / THE INSPIRATION</span>
+              <h2>Reference video</h2>
+            </div>
+            <span class="small-label">MP4 · MOV · WEBM</span>
+          </div>
+          <div
+            id="reference-empty"
+            class="drop-area reference-drop"
+            tabindex="0"
+            role="button"
+            aria-label="Upload reference video"
+          >
+            <span class="upload-symbol">↑</span
+            ><strong>Start with a reference</strong>
+            <p>Drop a short video here<br />or choose a file</p>
+            <span class="format-note">1–90 seconds · up to 150 MB</span>
+          </div>
+          <video
+            id="reference-video"
+            class="reference-video hidden"
+            controls
+            playsinline
+            preload="metadata"
+          ></video>
+          <p id="reference-name" class="file-name hidden"></p>
+          <input
+            id="reference-input"
+            type="file"
+            accept="video/mp4,video/quicktime,video/webm,video/x-matroska,.avi"
+            hidden
+          />
+          <button id="replace-reference" class="quiet full hidden">
+            Choose another reference
+          </button>
+          <button id="sample-button" class="secondary full">
+            Try the Medicube example <span>↗</span>
+          </button>
+          <div class="analysis-options">
+            <label
+              ><input type="checkbox" id="read-text" checked /> Estimate caption
+              placement</label
+            ><label
+              ><input type="checkbox" id="detect-beats" checked /> Estimate
+              music beats</label
+            ><small
+              >Caption detection currently uses English OCR.<br />First analysis
+              can take a few minutes.</small
+            >
+          </div>
+          <button id="analyse-button" class="primary full" disabled>
+            Analyse reference <span>→</span>
+          </button>
+          <div id="reference-profile" class="reference-profile hidden"></div>
+        </aside>
+        <section class="panel template-panel">
+          <div class="panel-heading">
+            <div>
+              <span class="section-number">02 / THE SKELETON</span>
+              <h2>Your reusable template</h2>
+            </div>
+            <span id="template-status" class="status-chip"
+              >Waiting for a reference</span
+            >
+          </div>
+          <div id="template-empty" class="template-empty">
+            <div class="mini-timeline" aria-hidden="true">
+              <span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <h3>The story behind the edit.</h3>
+            <p>
+              See where the video cuts, what each shot is doing, and how your
+              product can follow the same rhythm.
+            </p>
+            <div class="feature-list">
+              <span><b>01</b> Detect the editing pace</span
+              ><span><b>02</b> Review shot functions</span
+              ><span><b>03</b> Fill the slots with your materials</span>
+            </div>
+            <button id="import-button" class="text-button">
+              Already have a template? Import JSON →
+            </button>
+          </div>
+          <input
+            id="template-input"
+            type="file"
+            accept="application/json,.json"
+            hidden
+          />
+          <div id="template-editor" class="hidden">
+            <div class="template-summary" id="template-summary"></div>
+            <div
+              id="timeline"
+              class="timeline"
+              aria-label="Template shot timeline"
+            ></div>
+            <div class="timeline-scale">
+              <span>0:00</span><span id="timeline-end"></span>
+            </div>
+            <div class="editor-toolbar">
+              <span
+                ><i class="estimate-dot"></i> Auto estimates — review before
+                export</span
+              >
+              <div>
+                <button id="caption-top" class="tiny">Text top</button
+                ><button id="caption-bottom" class="tiny">Text bottom</button
+                ><button id="download-template" class="tiny">↓ JSON</button>
+              </div>
+            </div>
+            <div id="shot-list" class="shot-list"></div>
+            <p class="editor-note">
+              Change a shot’s function, duration, caption or assigned material.
+              “Automatic” matches by function and shot size.
+            </p>
+          </div>
+        </section>
+        <aside class="panel material-panel">
+          <div class="panel-heading">
+            <div>
+              <span class="section-number">03 / MAKE IT YOURS</span>
+              <h2>Product materials</h2>
+            </div>
+          </div>
+          <label class="field-label" for="product-name">Product name</label
+          ><input
+            id="product-name"
+            type="text"
+            maxlength="100"
+            placeholder="Your product name"
+          />
+          <label class="field-label" for="selling-points"
+            >Your talking points <span>optional</span></label
+          ><textarea
+            id="selling-points"
+            rows="3"
+            maxlength="1000"
+            placeholder="Add one short point per line"
+          ></textarea>
+          <div
+            class="drop-area material-drop"
+            id="material-drop"
+            role="button"
+            tabindex="0"
+            aria-label="Upload product materials"
+          >
+            <span class="plus-symbol">+</span
+            ><strong>Add images & clips</strong>
+            <p>JPG, PNG, WEBP or video · up to 20 files</p>
+          </div>
+          <input
+            id="asset-input"
+            type="file"
+            accept="image/jpeg,image/png,image/webp,video/mp4,video/quicktime,video/webm,.mkv,.avi"
+            multiple
+            hidden
+          />
+          <div id="asset-list" class="asset-list"></div>
+          <label class="field-label" for="music-input"
+            >Music <span>optional · your own audio</span></label
+          ><label class="music-picker" for="music-input"
+            ><span>♫</span><span id="music-name">Choose replacement music</span
+            ><b>+</b></label
+          ><input id="music-input" type="file" accept="audio/*" hidden />
+          <label class="checkbox-row"
+            ><input id="use-captions" type="checkbox" checked /> Add captions
+            from the template</label
+          >
+          <label class="field-label" for="export-size">Export size</label
+          ><select id="export-size">
+            <option value="720">720 × 1280 · presentation</option>
+            <option value="360">360 × 640 · faster preview</option>
+          </select>
+          <button
+            class="primary full create-button"
+            id="render-button"
+            disabled
+          >
+            Create my video <span>→</span>
+          </button>
+          <p class="material-note">
+            Uses your uploaded materials. The example materials were previously
+            generated with Seedance. No new paid generation is triggered.
+          </p>
+        </aside>
+      </div>
+      <section id="result-section" class="result-section hidden">
+        <div class="result-heading">
+          <div>
+            <p class="eyebrow">THE SAME STRUCTURE. A DIFFERENT STORY.</p>
+            <h2>Reference meets remake.</h2>
+          </div>
+          <div class="result-actions">
+            <a id="download-video" class="primary" download>↓ New video</a
+            ><a id="download-comparison" class="secondary" download
+              >↓ Side-by-side</a
+            ><a id="download-evidence" class="quiet" download>Timing report</a>
+          </div>
+        </div>
+        <div class="comparison-grid">
+          <div class="comparison-card">
+            <div><b>REFERENCE</b><span>Structure source</span></div>
+            <video
+              id="compare-reference"
+              controls
+              playsinline
+              preload="metadata"
+            ></video>
+          </div>
+          <div class="comparison-card">
+            <div>
+              <b>YOUR PRODUCT VIDEO</b
+              ><span>New materials, transferred timing</span>
+            </div>
+            <video
+              id="result-video"
+              controls
+              playsinline
+              preload="metadata"
+            ></video>
+          </div>
+          <div class="result-details">
+            <h3>The structure, carried over.</h3>
+            <div id="evidence-metrics"></div>
+            <div id="result-warnings"></div>
+            <p>
+              Cut agreement is measured by re-detecting the exported video.
+              Semantic labels and visual style still need human review.
+            </p>
+            <button id="sync-play" class="secondary full">
+              Play both together ▶
+            </button>
+          </div>
+        </div>
+      </section>
+      <footer>
+        <span>BEAUTY TEMPLATE STUDIO</span>
+        <p>
+          Research prototype · Phase 2 parsing → Phase 3 template → Phase 4
+          rendering
+        </p>
+        <button id="reset-session" class="text-button">
+          Start a new session ↗
+        </button>
+      </footer>
+    </main>
+  </body>
+</html>

@@ -1,1 +1,1 @@
-"""Phase 3 template abstraction and clustering. Implementation pending."""
+"""Portable editable demo templates; clustering and the full library remain open."""
